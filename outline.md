@@ -33,3 +33,30 @@ For reference:
 * [The Kotlin programming language](https://kotlinlang.org/docs/reference/)
 
 Lecture video (in Portuguese) (_coming soon_)
+
+
+### 21/09/2022 - Building a UI with Jetpack Compose: introduction (preview)
+
+* @Composable functions: State → @Composable → UI
+* Stateless @Composables
+  * Elementary composables: `Text` and `Button`
+  * Layouts: `Row`, `Column` e `Box`
+* Statefull @Composables
+  * State management: `remember` and `mutableStateOf`
+  * State hoisting
+* Execution in Jetpack Compose (concurrency model)
+  * In @Composable functions
+  * In event handlers
+* [Application resources](https://developer.android.com/guide/topics/resources/providing-resources)
+* Demo:
+  * Quote Of Day (with a fake service)
+
+For reference:
+* [Thinking in Compose | Jetpack Compose | Android Developers](https://developer.android.com/jetpack/compose/mental-model)
+* [Compose layout basics - Jetpack](https://developer.android.com/jetpack/compose/layouts/basics)
+* [State and Jetpack Compose](https://developer.android.com/jetpack/compose/state)
+
+Other links:
+* [Compose library elements and versions](https://developer.android.com/jetpack/androidx/releases/compose)
+
+Lecture video (in Portuguese) (_coming soon_)
