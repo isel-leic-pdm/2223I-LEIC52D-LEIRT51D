@@ -34,7 +34,7 @@ For reference:
 
 Lecture video (in Portuguese) (_coming soon_)
 
-
+## Week 2
 ### 21/09/2022 - Building a UI with Jetpack Compose: introduction (preview)
 
 * @Composable functions: State → @Composable → UI
