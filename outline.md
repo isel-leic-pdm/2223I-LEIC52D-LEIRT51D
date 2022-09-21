@@ -35,7 +35,7 @@ For reference:
 Lecture video (in Portuguese) (_coming soon_)
 
 ## Week 2
-### 21/09/2022 - Building a UI with Jetpack Compose: introduction (preview)
+### 21/09/2022 - Building a UI with Jetpack Compose: introduction
 
 * @Composable functions: State → @Composable → UI
 * Stateless @Composables
@@ -60,3 +60,16 @@ Other links:
 * [Compose library elements and versions](https://developer.android.com/jetpack/androidx/releases/compose)
 
 Lecture video (in Portuguese) (_coming soon_)
+
+### 23/09/2022 - Building a UI with Jetpack Compose: continued (preview)
+* @Composable functions, continued: State → @Composable → UI
+* Statefull @Composables
+  * State management: `remember` and `mutableStateOf`
+  * State hoisting
+* Execution in Jetpack Compose (concurrency model)
+  * In @Composable functions
+  * In event handlers
+
+For reference:
+* [Thinking in Compose | Jetpack Compose | Android Developers](https://developer.android.com/jetpack/compose/mental-model)
+* [State and Jetpack Compose](https://developer.android.com/jetpack/compose/state)
