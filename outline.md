@@ -93,14 +93,15 @@ For reference:
 
 Lecture video (in Portuguese) (_coming soon_)
 
-### 30/09/2022 - Building a UI: navigation
+### 30/09/2022 - Building a UI: navigation _(preview)_
 * Navigation between Activities
   * [Intents (explicit and implicit) and intent filters](https://developer.android.com/guide/components/intents-filters)
+    * [Sending the user to another app](https://developer.android.com/training/basics/intents/sending)
   * [User task and back stack](https://developer.android.com/guide/components/activities/tasks-and-back-stack)
 * Demo:
   * Adding a credits screen to the Quote Of Day demo (still with a fake service)
 
 * Other links:
   * [Using material components and layouts](https://developer.android.com/jetpack/compose/layouts/material)
-
+  
 Lecture video (in Portuguese) (_coming soon_)
