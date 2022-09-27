@@ -1,4 +1,4 @@
-package isel.pdm.demos.quoteofday.main
+package isel.pdm.demos.quoteofday.daily
 
 import android.os.Bundle
 import android.util.Log
@@ -6,14 +6,14 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.remember
 import isel.pdm.demos.quoteofday.DependenciesContainer
+import isel.pdm.demos.quoteofday.TAG
+import isel.pdm.demos.quoteofday.daily.views.LoadingState
 import isel.pdm.demos.quoteofday.utils.loggableMutableStateOf
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-const val TAG = "QuoteOfDayApp"
-
-class MainActivity : ComponentActivity() {
+class DailyQuoteActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val fakeService = (application as DependenciesContainer).quoteOfDayService

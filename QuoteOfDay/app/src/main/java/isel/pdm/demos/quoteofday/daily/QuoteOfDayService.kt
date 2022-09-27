@@ -1,4 +1,4 @@
-package isel.pdm.demos.quoteofday.main
+package isel.pdm.demos.quoteofday.daily
 
 import kotlinx.coroutines.delay
 

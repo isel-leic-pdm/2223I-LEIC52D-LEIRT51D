@@ -1,9 +1,7 @@
 package isel.pdm.demos.quoteofday
 
-import isel.pdm.demos.quoteofday.main.Quote
+import isel.pdm.demos.quoteofday.daily.Quote
 import org.junit.Test
-
-import org.junit.Assert.*
 
 /**
  * See [testing documentation](http://d.android.com/tools/testing).

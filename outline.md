@@ -75,7 +75,7 @@ For reference:
 [Lecture video (in Portuguese)](https://www.youtube.com/watch?v=lC2DRGhKCM8&list=PL8XxoCaL3dBhGZmXh2_SdA-RdeVxuf8Mv&index=3)
 
 ## Week 3
-### 28/09/2022 - State managment: presentation state _(preview)_
+### 28/09/2022 - State management: introduction _(preview)_
 * [ViewModel: purpose and motivation](https://developer.android.com/topic/libraries/architecture/viewmodel)
   * [Lifecycle](https://developer.android.com/topic/libraries/architecture/viewmodel#lifecycle)
   * Preserving state across configuration changes using a view model

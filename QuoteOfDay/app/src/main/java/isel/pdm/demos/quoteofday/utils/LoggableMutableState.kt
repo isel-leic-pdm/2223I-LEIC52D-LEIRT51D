@@ -3,7 +3,7 @@ package isel.pdm.demos.quoteofday.utils
 import android.util.Log
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
-import isel.pdm.demos.quoteofday.main.TAG
+import isel.pdm.demos.quoteofday.TAG
 
 class LoggedMutableState<T>(private val at: String, private val delegate: MutableState<T>)
     : MutableState<T> by delegate {

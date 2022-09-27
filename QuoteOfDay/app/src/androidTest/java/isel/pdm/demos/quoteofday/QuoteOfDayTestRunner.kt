@@ -3,8 +3,8 @@ package isel.pdm.demos.quoteofday
 import android.app.Application
 import android.content.Context
 import androidx.test.runner.AndroidJUnitRunner
-import isel.pdm.demos.quoteofday.main.Quote
-import isel.pdm.demos.quoteofday.main.QuoteOfDayService
+import isel.pdm.demos.quoteofday.daily.Quote
+import isel.pdm.demos.quoteofday.daily.QuoteOfDayService
 import kotlinx.coroutines.delay
 
 const val FAKE_FETCH_DELAY = 2000L

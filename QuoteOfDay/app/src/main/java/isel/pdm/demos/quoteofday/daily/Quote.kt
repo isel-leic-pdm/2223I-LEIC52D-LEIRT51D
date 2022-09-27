@@ -1,4 +1,4 @@
-package isel.pdm.demos.quoteofday.main
+package isel.pdm.demos.quoteofday.daily
 
 data class Quote(val content: String, val author: String) {
     init {
