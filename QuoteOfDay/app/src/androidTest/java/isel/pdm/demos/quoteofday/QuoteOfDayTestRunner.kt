@@ -5,16 +5,10 @@ import android.content.Context
 import androidx.test.runner.AndroidJUnitRunner
 import isel.pdm.demos.quoteofday.daily.Quote
 import isel.pdm.demos.quoteofday.daily.QuoteOfDayService
-import kotlinx.coroutines.delay
 
-const val FAKE_FETCH_DELAY = 2000L
-
-private class TestFakeQuoteService : QuoteOfDayService {
-
-    override suspend fun getTodayQuote(): Quote {
-        delay(FAKE_FETCH_DELAY)
-        return Quote("Test text", "Test author")
-    }
+class TestFakeQuoteService : QuoteOfDayService {
+    override suspend fun getTodayQuote() =
+        Quote(content = "Test text", author = "Test author")
 }
 
 class QuoteOfDayTestApplication : DependenciesContainer, Application() {

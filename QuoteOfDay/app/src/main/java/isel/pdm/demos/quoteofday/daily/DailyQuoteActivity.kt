@@ -42,9 +42,7 @@ class DailyQuoteActivity : ComponentActivity() {
             QuoteOfDayScreen(
                 quote = quote.value,
                 state = isLoading,
-                onUpdateRequested = {
-                    vm.fetchQuoteOfDay()
-                },
+                onUpdateRequested = { vm.fetchQuoteOfDay() },
                 onInfoRequest = { navigateToInfoScreen() }
             )
         }

@@ -21,7 +21,6 @@ class DailyQuoteViewModel(
 
     fun fetchQuoteOfDay() {
         viewModelScope.launch {
-
             _isLoading.value = true
             _quote.value = service.getTodayQuote()
             _isLoading.value = false
