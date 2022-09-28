@@ -3,7 +3,7 @@ package isel.pdm.demos.quoteofday.daily
 import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
+import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -13,27 +13,30 @@ import isel.pdm.demos.quoteofday.TAG
 import isel.pdm.demos.quoteofday.daily.views.LoadingButton
 import isel.pdm.demos.quoteofday.daily.views.LoadingState
 import isel.pdm.demos.quoteofday.daily.views.QuoteView
+import isel.pdm.demos.quoteofday.ui.TopBar
 import isel.pdm.demos.quoteofday.ui.theme.QuoteOfDayTheme
 
 @Composable
 fun QuoteOfDayScreen(
     quote: Quote? = null,
     state: LoadingState,
-    onUpdateRequested: () -> Unit
+    onUpdateRequested: () -> Unit,
+    onInfoRequest: () -> Unit
 ) {
     QuoteOfDayTheme {
         Log.v(TAG, "QuoteOfDayScreen composed")
-        // A surface container using the 'background' color from the theme
-        Surface(
+        Scaffold(
             modifier = Modifier.fillMaxSize(),
-            color = MaterialTheme.colors.background
-        ) {
+            backgroundColor = MaterialTheme.colors.background,
+            topBar = { TopBar(onInfoRequested = { onInfoRequest() }) }
+        ) { innerPadding ->
             Column {
                 Box(
                     contentAlignment = Alignment.Center,
                     modifier = Modifier
                         .fillMaxSize()
                         .weight(weight = 1.0f)
+                        .padding(innerPadding)
                 ) {
                     if (quote != null)
                         QuoteView(quote = quote)
@@ -63,7 +66,12 @@ fun QuoteOfDayScreenPreviewWithQuote() {
 
     val quote = Quote(quoteText, "Fernando Pessoa")
     QuoteOfDayTheme {
-        QuoteOfDayScreen(quote = quote, state = LoadingState.Idle, onUpdateRequested = { })
+        QuoteOfDayScreen(
+            quote = quote,
+            state = LoadingState.Idle,
+            onUpdateRequested = { },
+            onInfoRequest = { }
+        )
     }
 }
 
@@ -71,6 +79,10 @@ fun QuoteOfDayScreenPreviewWithQuote() {
 @Composable
 fun QuoteOfDayScreenPreviewWithoutQuote() {
     QuoteOfDayTheme {
-        QuoteOfDayScreen(state = LoadingState.Idle, onUpdateRequested = { })
+        QuoteOfDayScreen(
+            state = LoadingState.Idle,
+            onUpdateRequested = { },
+            onInfoRequest = { }
+        )
     }
 }

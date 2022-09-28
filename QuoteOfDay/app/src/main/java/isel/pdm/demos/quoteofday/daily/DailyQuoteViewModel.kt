@@ -7,8 +7,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 
-class DailyQuoteViewModel : ViewModel() {
-
+class DailyQuoteViewModel(
+    private val service: QuoteOfDayService
+) : ViewModel() {
 
     private val _quote: MutableState<Quote?> = mutableStateOf(null)
     val quote: State<Quote?>
@@ -18,8 +19,9 @@ class DailyQuoteViewModel : ViewModel() {
     val isLoading: State<Boolean>
         get() = _isLoading
 
-    fun fetchQuoteOfDay(service: QuoteOfDayService) {
+    fun fetchQuoteOfDay() {
         viewModelScope.launch {
+
             _isLoading.value = true
             _quote.value = service.getTodayQuote()
             _isLoading.value = false
