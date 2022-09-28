@@ -1,4 +1,4 @@
-package isel.pdm.demos.quoteofday.daily
+package isel.pdm.demos.quoteofday.daily.views
 
 import android.util.Log
 import androidx.compose.foundation.layout.Column
@@ -13,6 +13,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import isel.pdm.demos.quoteofday.TAG
+import isel.pdm.demos.quoteofday.daily.Quote
 import isel.pdm.demos.quoteofday.ui.theme.QuoteOfDayTheme
 
 @Composable

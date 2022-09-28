@@ -12,6 +12,7 @@ import androidx.compose.ui.unit.dp
 import isel.pdm.demos.quoteofday.TAG
 import isel.pdm.demos.quoteofday.daily.views.LoadingButton
 import isel.pdm.demos.quoteofday.daily.views.LoadingState
+import isel.pdm.demos.quoteofday.daily.views.QuoteView
 import isel.pdm.demos.quoteofday.ui.theme.QuoteOfDayTheme
 
 @Composable
