@@ -93,10 +93,11 @@ For reference:
 
 Lecture video (in Portuguese) (_coming soon_)
 
-### 30/09/2022 - Building a UI: navigation _(preview)_
+### 30/09/2022 - Building a UI: navigation
 * Navigation between Activities
   * [Intents (explicit and implicit) and intent filters](https://developer.android.com/guide/components/intents-filters)
     * [Sending the user to another app](https://developer.android.com/training/basics/intents/sending)
+    * [Common Intents](https://developer.android.com/guide/components/intents-common)
   * [User task and back stack](https://developer.android.com/guide/components/activities/tasks-and-back-stack)
 * Demo:
   * Adding a credits screen to the Quote Of Day demo (still with a fake service)

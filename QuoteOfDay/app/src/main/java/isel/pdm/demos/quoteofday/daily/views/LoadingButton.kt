@@ -30,9 +30,9 @@ fun LoadingButton(
     ) {
         val text =
             if (state == LoadingState.Idle)
-                stringResource(id = R.string.fetch_quote_button_text)
+                stringResource(id = R.string.activity_quote_fetch_quote_button_text)
             else
-                stringResource(id = R.string.fetch_quote_button_text_loading)
+                stringResource(id = R.string.activity_quote_fetch_quote_button_text_loading)
         Text(text = text)
     }
 }

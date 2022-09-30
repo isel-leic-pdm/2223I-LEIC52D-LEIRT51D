@@ -1,5 +1,6 @@
 package isel.pdm.demos.quoteofday.info
 
+import android.media.tv.BroadcastInfoRequest
 import android.net.Uri
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
@@ -33,7 +34,8 @@ fun InfoScreen(
         Scaffold(
             modifier = Modifier.fillMaxSize(),
             backgroundColor = MaterialTheme.colors.background,
-            topBar = { TopBar(onBackRequested = { onBackRequested() }) },
+            topBar = {
+                TopBar(onBackRequested = { onBackRequested() }) },
         ) { innerPadding ->
             Column(
                 verticalArrangement = Arrangement.SpaceAround,
