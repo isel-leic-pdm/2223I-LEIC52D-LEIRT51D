@@ -91,7 +91,7 @@ For reference:
 * Demo:
   * Lets fix the Quote Of Day demo (still with a fake service)
 
-Lecture video (in Portuguese) (_coming soon_)
+[Lecture video (in Portuguese)](https://www.youtube.com/watch?v=jteeUsikP4w&list=PL8XxoCaL3dBhGZmXh2_SdA-RdeVxuf8Mv&index=4)
 
 ### 30/09/2022 - Building a UI: navigation
 * Navigation between Activities
