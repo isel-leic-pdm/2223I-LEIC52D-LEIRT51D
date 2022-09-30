@@ -35,7 +35,7 @@ class InfoActivity : ComponentActivity() {
             Toast
                 .makeText(
                     this,
-                    R.string.activity_info_no_browser_error,
+                    R.string.activity_info_no_suitable_app,
                     Toast.LENGTH_LONG
                 )
                 .show()
@@ -43,19 +43,25 @@ class InfoActivity : ComponentActivity() {
     }
 
     private fun openSendEmail() {
-        val intent = Intent(Intent.ACTION_SEND).apply {
-            type = "text/plain"
-            putExtra(Intent.EXTRA_EMAIL, authorEmail)
-            putExtra(Intent.EXTRA_SUBJECT, emailSubject)
+        try {
+            val intent = Intent(Intent.ACTION_SENDTO).apply {
+                data = Uri.parse("mailto:")
+                putExtra(Intent.EXTRA_EMAIL, arrayOf(authorEmail))
+                putExtra(Intent.EXTRA_SUBJECT, emailSubject)
+            }
+
+            startActivity(intent)
         }
-
-        val chooser = Intent.createChooser(
-            intent,
-            resources.getString(R.string.activity_info_chooser_title)
-        )
-
-        if (intent.resolveActivity(packageManager) != null)
-            startActivity(chooser)
+        catch (e: ActivityNotFoundException) {
+            Log.e(TAG, "Failed to send email", e)
+            Toast
+                .makeText(
+                    this,
+                    R.string.activity_info_no_suitable_app,
+                    Toast.LENGTH_LONG
+                )
+                .show()
+        }
     }
 }
 

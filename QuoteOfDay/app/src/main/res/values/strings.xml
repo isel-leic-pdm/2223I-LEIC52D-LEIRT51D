@@ -1,10 +1,9 @@
 <resources>
     <string name="app_name" translatable="false">QuoteOfDay</string>
 
-    <string name="activity_quote_fetch_quote_button_text">Get Quote</string>
-    <string name="activity_quote_fetch_quote_button_text_loading">Loading …</string>
+    <string name="activity_quote_fetch_button_text">Get Quote</string>
+    <string name="activity_quote_fetch_button_text_loading">Loading …</string>
 
-    <string name="activity_info_title" translatable="false">InfoActivity</string>
-    <string name="activity_info_no_browser_error" translatable="false">Could not find a suitable application</string>
-    <string name="activity_info_chooser_title" translatable="false">Could not find a suitable application</string>
+    <string name="activity_info_title">InfoActivity</string>
+    <string name="activity_info_no_suitable_app">Could not find a suitable application</string>
 </resources>
