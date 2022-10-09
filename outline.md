@@ -109,3 +109,44 @@ For reference:
 
 ## Week 4
 * Practical classes dedicated to the development of the course's project
+
+## Week 5
+### 12/10/2022 - Comunication with HTTP APIs
+* The Android device as an HTTP client
+  * Motivation
+  * Consequences of distribution
+  * [Required permissions](https://developer.android.com/training/basics/network-ops/connecting)
+* HTTP comunication with [OkHttp](https://square.github.io/okhttp/)
+  * Programming model
+  * Making asynchronous requests 
+  * Bridging between OkHttp's and Kotlin's concurrency models
+* JSON serialization and desserialization with [Gson](https://github.com/google/gson)
+* Demo:
+  * Quote Of Day with a real service (fake service is no more)
+
+For reference:
+* [Kotlin coroutines on Android](https://developer.android.com/kotlin/coroutines)
+
+Other links:
+* [Siren media type](https://github.com/kevinswiber/siren)
+
+Lecture video (in Portuguese) _(coming soon)_
+
+### 14/10/2022 - State management: continued _(preview)_
+* Navigation between activities, revisited
+  * [Sending data between activities](https://developer.android.com/guide/components/activities/parcelables-and-bundles#sdba)
+  * [Parcelable contract](https://developer.android.com/reference/android/os/Parcelable)
+  * [Parcelable implementation generator and the `@Parcelize` annotation](https://developer.android.com/kotlin/parcelize)
+* Application state vs presentation state, revisited
+* Presentation state:
+  * Preserving it outside the hosting process: Parcelable contract, again
+  * [Restoring state in Jetpack Compose: `rememberSaveable`](https://developer.android.com/jetpack/compose/state#restore-ui-state)
+* Demo:
+  * Adding a screen to the Quote Of Day demo that displays the week's quotes
+    * Build an `ExpandableQuoteView` composable (with presentation state)
+    * Use lazy lists instead of the eager versions
+
+For reference:
+* [Lists and grids](https://developer.android.com/jetpack/compose/lists)
+
+Lecture video (in Portuguese) _(coming soon)_
