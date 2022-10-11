@@ -128,7 +128,9 @@ For reference:
 * [Kotlin coroutines on Android](https://developer.android.com/kotlin/coroutines)
 
 Other links:
+* [Quote Of Day API repo](https://github.com/palbp/laboratory/tree/main/Mobile/Demos/QuoteOfDay/server)
 * [Siren media type](https://github.com/kevinswiber/siren)
+* [ngrok](https://ngrok.com/)
 
 Lecture video (in Portuguese) _(coming soon)_
 
