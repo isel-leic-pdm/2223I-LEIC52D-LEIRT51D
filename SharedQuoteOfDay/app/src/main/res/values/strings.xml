@@ -1,8 +1,0 @@
-<resources>
-    <string name="app_name">QuoteOfDay</string>
-    <string name="activity_quote_fetch_button_text_idle">Fetch Quote</string>
-    <string name="activity_quote_fetch_button_text_loading">Fetching …</string>
-
-    <string name="activity_info_title">InfoActivity</string>
-    <string name="activity_info_no_suitable_app">Could not find a suitable application</string>
-</resources>

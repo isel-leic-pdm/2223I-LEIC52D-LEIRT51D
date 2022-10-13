@@ -4,18 +4,18 @@ plugins {
 }
 
 android {
-    namespace 'isel.pdm.demos.quoteofday'
     compileSdk 33
 
     defaultConfig {
-        applicationId "isel.pdm.demos.quoteofday"
-        minSdk 26
+        applicationId "palbp.laboratory.demos.quoteofday"
+        minSdk 22
         targetSdk 33
         versionCode 1
         versionName "1.0"
 
         //testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        testInstrumentationRunner "isel.pdm.demos.quoteofday.QuoteOfDayTestRunner"
+        testInstrumentationRunner "palbp.laboratory.demos.quoteofday.QuoteOfDayTestRunner"
+
         vectorDrawables {
             useSupportLibrary true
         }
@@ -45,6 +45,7 @@ android {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
     }
+    namespace 'palbp.laboratory.demos.quoteofday'
 }
 
 dependencies {
