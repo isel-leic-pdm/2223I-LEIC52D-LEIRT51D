@@ -134,7 +134,7 @@ Other links:
 
 Lecture video (in Portuguese) _(coming soon)_
 
-### 14/10/2022 - State management: continued _(preview)_
+### 14/10/2022 - State management: continued
 * Navigation between activities, revisited
   * [Sending data between activities](https://developer.android.com/guide/components/activities/parcelables-and-bundles#sdba)
   * [Parcelable contract](https://developer.android.com/reference/android/os/Parcelable)
@@ -151,4 +151,20 @@ Lecture video (in Portuguese) _(coming soon)_
 For reference:
 * [Lists and grids](https://developer.android.com/jetpack/compose/lists)
 
+Other links:
+* [Animations in Jetpack Compose](https://developer.android.com/jetpack/compose/animation)
+
 Lecture video (in Portuguese) _(coming soon)_
+
+## Week 6
+### 19/10/2022
+* Part 1: Finishing up on last session's topics
+
+Lecture video (in Portuguese) _(coming soon)_
+
+* Part 2: Practical class dedicated to the course's project
+
+### 21/10/2022 - _TBD_
+
+
+
