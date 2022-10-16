@@ -12,6 +12,10 @@ import androidx.activity.compose.setContent
 import palbp.laboratory.demos.quoteofday.R
 import palbp.laboratory.demos.quoteofday.TAG
 
+/**
+ * The activity that hosts the screen for displaying the application's author
+ * information.
+ */
 class InfoActivity : ComponentActivity() {
 
     companion object {

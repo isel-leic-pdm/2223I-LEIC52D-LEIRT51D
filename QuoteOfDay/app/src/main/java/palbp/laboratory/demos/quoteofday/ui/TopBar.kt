@@ -43,15 +43,23 @@ fun TopBar(
 
 @Preview
 @Composable
-private fun TopBarPreviewDailyQuoteScreen() {
+private fun TopBarPreviewInfoAndHistory() {
     QuoteOfDayTheme {
-        TopBar(onInfoRequested = { })
+        TopBar(onInfoRequested = { }, onHistoryRequested = { })
     }
 }
 
 @Preview
 @Composable
-private fun TopBarPreviewAboutScreen() {
+private fun TopBarPreviewBackAndInfo() {
+    QuoteOfDayTheme {
+        TopBar(onBackRequested = { }, onInfoRequested = { })
+    }
+}
+
+@Preview
+@Composable
+private fun TopBarPreviewBack() {
     QuoteOfDayTheme {
         TopBar(onBackRequested = { })
     }

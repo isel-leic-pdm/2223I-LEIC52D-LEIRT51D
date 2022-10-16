@@ -22,17 +22,18 @@ import palbp.laboratory.demos.quoteofday.ui.RefreshingState
 import palbp.laboratory.demos.quoteofday.ui.TopBar
 import palbp.laboratory.demos.quoteofday.ui.theme.QuoteOfDayTheme
 
-data class QuoteOfDayScreenState(
+data class QuoteScreenState(
     val quote: Quote? = null,
     val loadingState: RefreshingState = RefreshingState.Idle
 )
 
 @Composable
-fun QuoteOfDayScreen(
-    state: QuoteOfDayScreenState = QuoteOfDayScreenState(),
+fun QuoteScreen(
+    state: QuoteScreenState = QuoteScreenState(),
     onUpdateRequest: (() -> Unit)? = null,
     onInfoRequest: (() -> Unit)? = null,
-    onHistoryRequested: (() -> Unit)? = null
+    onHistoryRequested: (() -> Unit)? = null,
+    onBackRequested: (() -> Unit)? = null
 ) {
     Log.i(TAG, "QuoteOfDayScreen: composing")
     QuoteOfDayTheme {
@@ -40,16 +41,19 @@ fun QuoteOfDayScreen(
             modifier = Modifier.fillMaxSize(),
             backgroundColor = MaterialTheme.colors.background,
             floatingActionButton = {
-                RefreshFab(
-                    onClick = onUpdateRequest ?: { },
-                    state = state.loadingState
-                )
+                if (onUpdateRequest != null) {
+                    RefreshFab(
+                        onClick = onUpdateRequest,
+                        state = state.loadingState
+                    )
+                }
             },
             floatingActionButtonPosition = FabPosition.Center,
             topBar = {
                 TopBar(
                     onInfoRequested = onInfoRequest,
-                    onHistoryRequested = onHistoryRequested
+                    onHistoryRequested = onHistoryRequested,
+                    onBackRequested = onBackRequested
                 )
             }
         ) { innerPadding ->
@@ -79,5 +83,5 @@ private val loremIpsumQuote = Quote(
 @Preview(showBackground = true)
 @Composable
 private fun QuoteOfDayScreenPreview() {
-    QuoteOfDayScreen(QuoteOfDayScreenState(quote = loremIpsumQuote))
+    QuoteScreen(QuoteScreenState(quote = loremIpsumQuote))
 }

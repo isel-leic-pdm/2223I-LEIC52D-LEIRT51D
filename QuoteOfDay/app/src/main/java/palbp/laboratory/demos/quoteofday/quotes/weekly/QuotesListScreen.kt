@@ -29,6 +29,7 @@ data class QuotesListScreenState(
 @Composable
 fun QuotesListScreen(
     state: QuotesListScreenState = QuotesListScreenState(),
+    onQuoteSelected: (Quote) -> Unit = { },
     onBackRequested: () -> Unit = { },
     onUpdateRequest: (() -> Unit)? = null,
     onInfoRequest: (() -> Unit)? = null,
@@ -60,7 +61,7 @@ fun QuotesListScreen(
                 items(state.quotes) {
                     ExpandableQuoteView(
                         quote = it,
-                        onSelected = { /* TODO */ }
+                        onSelected = { onQuoteSelected(it) }
                     )
                 }
             }

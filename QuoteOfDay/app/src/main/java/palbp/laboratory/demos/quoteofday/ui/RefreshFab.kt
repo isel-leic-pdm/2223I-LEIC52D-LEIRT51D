@@ -8,13 +8,13 @@ import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Icon
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Refresh
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.delay
 
 enum class RefreshingState { Idle, Refreshing }
 
@@ -106,4 +106,24 @@ private fun IdleRefreshFabPreview() {
 @Composable
 private fun RefreshingRefreshFabPreview() {
     RefreshFab(onClick = { }, state = RefreshingState.Refreshing)
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun RefreshFabPreview() {
+    var refreshing by remember { mutableStateOf(RefreshingState.Idle) }
+    LaunchedEffect(key1 = refreshing, block = {
+        if (refreshing == RefreshingState.Refreshing) {
+            delay(3000)
+            refreshing = RefreshingState.Idle
+        }
+    })
+    RefreshFab(
+        onClick = {
+            refreshing =
+                if (refreshing == RefreshingState.Idle) RefreshingState.Refreshing
+                else RefreshingState.Idle
+        },
+        state = refreshing
+    )
 }

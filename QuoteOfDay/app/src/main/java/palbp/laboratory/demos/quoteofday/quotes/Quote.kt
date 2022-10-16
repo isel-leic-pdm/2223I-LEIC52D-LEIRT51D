@@ -11,3 +11,9 @@ fun Quote(dto: SirenEntity<QuoteDtoProperties>): Quote {
     require(quote != null)
     return Quote(text = quote.text, author = quote.author)
 }
+
+fun Quote(localDto: LocalQuoteDto): Quote {
+    return Quote(text = localDto.text, author = localDto.author)
+}
+
+fun Quote.toLocalDto() = LocalQuoteDto(text, author)
