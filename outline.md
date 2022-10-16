@@ -132,7 +132,7 @@ Other links:
 * [Siren media type](https://github.com/kevinswiber/siren)
 * [ngrok](https://ngrok.com/)
 
-Lecture video (in Portuguese) _(coming soon)_
+[Lecture video (in Portuguese)](https://www.youtube.com/watch?v=cE5pJ6L6m80&list=PL8XxoCaL3dBhGZmXh2_SdA-RdeVxuf8Mv&index=6)
 
 ### 14/10/2022 - State management: continued
 * Navigation between activities, revisited
@@ -154,7 +154,7 @@ For reference:
 Other links:
 * [Animations in Jetpack Compose](https://developer.android.com/jetpack/compose/animation)
 
-Lecture video (in Portuguese) _(coming soon)_
+[Lecture video (in Portuguese)](https://www.youtube.com/watch?v=Iisv0qSfnKo&list=PL8XxoCaL3dBhGZmXh2_SdA-RdeVxuf8Mv&index=7)
 
 ## Week 6
 ### 19/10/2022
