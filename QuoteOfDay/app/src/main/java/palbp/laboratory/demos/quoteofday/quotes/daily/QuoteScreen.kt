@@ -12,14 +12,12 @@ import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
 import palbp.laboratory.demos.quoteofday.TAG
 import palbp.laboratory.demos.quoteofday.quotes.Quote
-import palbp.laboratory.demos.quoteofday.ui.QuoteView
-import palbp.laboratory.demos.quoteofday.ui.RefreshFab
-import palbp.laboratory.demos.quoteofday.ui.RefreshingState
-import palbp.laboratory.demos.quoteofday.ui.TopBar
+import palbp.laboratory.demos.quoteofday.ui.*
 import palbp.laboratory.demos.quoteofday.ui.theme.QuoteOfDayTheme
 
 data class QuoteScreenState(
@@ -30,15 +28,13 @@ data class QuoteScreenState(
 @Composable
 fun QuoteScreen(
     state: QuoteScreenState = QuoteScreenState(),
+    onNavigationRequested: NavigationHandlers = NavigationHandlers(),
     onUpdateRequest: (() -> Unit)? = null,
-    onInfoRequest: (() -> Unit)? = null,
-    onHistoryRequested: (() -> Unit)? = null,
-    onBackRequested: (() -> Unit)? = null
 ) {
     Log.i(TAG, "QuoteOfDayScreen: composing")
     QuoteOfDayTheme {
         Scaffold(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier.fillMaxSize().testTag("QuoteScreen"),
             backgroundColor = MaterialTheme.colors.background,
             floatingActionButton = {
                 if (onUpdateRequest != null) {
@@ -50,11 +46,7 @@ fun QuoteScreen(
             },
             floatingActionButtonPosition = FabPosition.Center,
             topBar = {
-                TopBar(
-                    onInfoRequested = onInfoRequest,
-                    onHistoryRequested = onHistoryRequested,
-                    onBackRequested = onBackRequested
-                )
+                TopBar(navigation = onNavigationRequested)
             }
         ) { innerPadding ->
             Log.i(TAG, "QuoteOfDayScreen content: composing")

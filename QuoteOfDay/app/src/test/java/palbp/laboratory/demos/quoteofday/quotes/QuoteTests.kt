@@ -1,7 +1,6 @@
-package palbp.laboratory.demos.quoteofday
+package palbp.laboratory.demos.quoteofday.quotes
 
 import org.junit.Test
-import palbp.laboratory.demos.quoteofday.quotes.Quote
 
 class QuoteTests {
 

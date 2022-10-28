@@ -21,10 +21,14 @@ class QuotesListScreenViewModel(
     val quotes: List<Quote>
         get() = _quotes
 
-    fun fetchWeekQuotes() {
+    fun fetchWeekQuotes(forcedRefresh: Boolean = true) {
+        // TODO: Check if we have connectivity and call QuoteService accordingly
         viewModelScope.launch {
             _isLoading = true
-            _quotes = quoteService.fetchWeekQuotes()
+            _quotes = quoteService.fetchWeekQuotes(
+                if (forcedRefresh) QuoteService.Mode.FORCE_REMOTE
+                else QuoteService.Mode.AUTO
+            )
             _isLoading = false
         }
     }

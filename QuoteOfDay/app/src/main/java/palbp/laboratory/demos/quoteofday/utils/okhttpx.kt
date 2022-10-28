@@ -17,8 +17,10 @@ import kotlin.coroutines.suspendCoroutine
  *                      Be mindful of threading issues.
  * @return the result of the response [handler]
  * @throws  [IOException] if a communication error occurs.
+ * @throws  [Throwable] if any error is thrown by the response handler.
  */
 suspend fun <T> Request.send(okHttpClient: OkHttpClient, handler: (Response) -> T): T =
+
     suspendCoroutine { continuation ->
         okHttpClient.newCall(request = this).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
@@ -26,7 +28,12 @@ suspend fun <T> Request.send(okHttpClient: OkHttpClient, handler: (Response) -> 
             }
 
             override fun onResponse(call: Call, response: Response) {
-                continuation.resume(handler(response))
+                try {
+                    continuation.resume(handler(response))
+                }
+                catch (t: Throwable) {
+                    continuation.resumeWithException(t)
+                }
             }
         })
     }

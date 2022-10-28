@@ -8,11 +8,11 @@ import palbp.laboratory.demos.quoteofday.quotes.QuoteService
 
 private class TestFakeQuoteService : QuoteService {
 
-    override suspend fun fetchQuote(): Quote {
+    override suspend fun fetchQuote(mode: QuoteService.Mode): Quote {
         return Quote(text = "Test text", author = "Test author")
     }
 
-    override suspend fun fetchWeekQuotes(): List<Quote> {
+    override suspend fun fetchWeekQuotes(mode: QuoteService.Mode): List<Quote> {
         return buildList {
             for (count in 1..5) {
                 add(

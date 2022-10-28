@@ -11,7 +11,9 @@ import palbp.laboratory.demos.quoteofday.quotes.Quote
 import palbp.laboratory.demos.quoteofday.quotes.QuoteService
 import palbp.laboratory.demos.quoteofday.utils.loggableMutableStateOf
 
-class QuoteScreenViewModel(private val quoteService: QuoteService): ViewModel() {
+class QuoteScreenViewModel(
+    private val quoteService: QuoteService
+): ViewModel() {
 
     init {
         Log.v(TAG, "QuoteScreenViewModel.init()")
@@ -27,10 +29,14 @@ class QuoteScreenViewModel(private val quoteService: QuoteService): ViewModel() 
     val quote: Quote?
         get() = _quote
 
-    fun fetchQuote() {
+    fun fetchQuote(forcedRefresh: Boolean = true) {
+        // TODO: Check if we have connectivity and call QuoteService accordingly
         viewModelScope.launch {
             _isLoading = true
-            _quote = quoteService.fetchQuote()
+            _quote = quoteService.fetchQuote(
+                if (forcedRefresh) QuoteService.Mode.FORCE_REMOTE
+                else QuoteService.Mode.AUTO
+            )
             _isLoading = false
         }
     }

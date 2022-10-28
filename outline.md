@@ -158,13 +158,37 @@ Other links:
 
 ## Week 6
 ### 19/10/2022
-* Part 1: Finishing up on last session's topics
+
+* Practical classes dedicated to the development of the course's project
+
+## Week 7
+### 26/10/2022 - State managemenet
+* Considerations on the design of Android applications
+  * [Guide to app architecture](https://developer.android.com/topic/architecture)
+  * Materialization on the QuoteOfDay demo application
+* Resource managment 
+  * Rationalizing the use of the communications' network
+  * Leveraging HTTP caching
+  * [Caching support in OkHttp](https://square.github.io/okhttp/features/caching/)
+  * [Accessing application specific storage in Android](https://developer.android.com/training/data-storage/app-specific)
+
+Other links:
+* [HTTP Caching - MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching)
+* [HTTP Caching - RFC 9111](https://httpwg.org/specs/rfc9111.html)
 
 Lecture video (in Portuguese) _(coming soon)_
 
-* Part 2: Practical class dedicated to the course's project
+### 28/10/2022 - Execution in Android: continued
 
-### 21/10/2022 - _TBD_
+* [Performing background work (i.e. non user facing)](https://developer.android.com/guide/background)
+  * Motivation
+  * Resource management in Android: [processes](https://developer.android.com/guide/components/processes-and-threads#Processes)
 
+* [Introduction to the Work Manager API](https://developer.android.com/topic/libraries/architecture/workmanager/basics)
+  * [Purpose and motivation](https://developer.android.com/topic/libraries/architecture/workmanager/)
+  * Building blocks and [concurrency model](https://developer.android.com/topic/libraries/architecture/workmanager/advanced/coroutineworker)
 
+Other links:
+* [https://dontkillmyapp.com/](https://dontkillmyapp.com/)
 
+Lecture video (in Portuguese) _(coming soon)_
