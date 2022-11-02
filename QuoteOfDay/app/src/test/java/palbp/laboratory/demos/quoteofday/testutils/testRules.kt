@@ -8,6 +8,10 @@ import org.junit.runner.Description
 import org.junit.runners.model.Statement
 
 
+/**
+ * Test rule that launches a mock web server prior to the test execution and closes it
+ * once the test finishes.
+ */
 class MockWebServerRule : TestRule {
 
     val server: MockWebServer

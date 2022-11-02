@@ -182,7 +182,7 @@ Lecture video (in Portuguese) _(coming soon)_
 
 * [Performing background work (i.e. non user facing)](https://developer.android.com/guide/background)
   * Motivation
-  * Resource management in Android: [processes](https://developer.android.com/guide/components/processes-and-threads#Processes)
+  * Resource management in Android: [processes](https://developer.android.com/guide/components/activities/process-lifecycle)
 
 * [Introduction to the Work Manager API](https://developer.android.com/topic/libraries/architecture/workmanager/basics)
   * [Purpose and motivation](https://developer.android.com/topic/libraries/architecture/workmanager/)
@@ -190,5 +190,6 @@ Lecture video (in Portuguese) _(coming soon)_
 
 Other links:
 * [https://dontkillmyapp.com/](https://dontkillmyapp.com/)
+* * [Testing Worker implementation](https://developer.android.com/topic/libraries/architecture/workmanager/how-to/testing-worker-impl)
 
 Lecture video (in Portuguese) _(coming soon)_

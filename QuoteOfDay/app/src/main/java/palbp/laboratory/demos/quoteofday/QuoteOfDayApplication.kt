@@ -20,7 +20,7 @@ interface DependenciesContainer {
     val quoteService: QuoteService
 }
 
-private val quoteAPIHome = URL("https://e51a-2001-818-e22f-ee00-d4a6-efd5-b697-50de.ngrok.io")
+private val quoteAPIHome = URL("https://5553-2001-818-e22f-ee00-bde2-15ea-7f47-87a.ngrok.io")
 
 class QuoteOfDayApplication : DependenciesContainer, Application() {
 
@@ -49,7 +49,7 @@ class QuoteOfDayApplication : DependenciesContainer, Application() {
 
     private val workerConstraints  = Constraints.Builder()
         .setRequiredNetworkType(NetworkType.CONNECTED)
-        //.setRequiresCharging(true)
+        .setRequiresCharging(true)
         .build()
 
     override fun onCreate() {
@@ -57,9 +57,8 @@ class QuoteOfDayApplication : DependenciesContainer, Application() {
         Log.v(TAG, "QuoteOfDayApplication.onCreate() on process ${android.os.Process.myPid()}")
 
         val workRequest =
-            PeriodicWorkRequestBuilder<QuotesWorker>(repeatInterval = 15, TimeUnit.MINUTES)
+            PeriodicWorkRequestBuilder<QuotesWorker>(repeatInterval = 12, TimeUnit.HOURS)
                 .setConstraints(workerConstraints)
-                .setInitialDelay(2, TimeUnit.MINUTES)
                 .build()
 
         WorkManager.getInstance(this).enqueueUniquePeriodicWork(

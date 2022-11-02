@@ -63,7 +63,8 @@ fun Author(onSendEmailRequested: () -> Unit = { }) {
     ) {
         Image(
             painter = painterResource(id = R.drawable.ic_author),
-            contentDescription = null
+            contentDescription = null,
+            modifier = Modifier.sizeIn(100.dp, 100.dp, 200.dp, 200.dp)
         )
         Text(text = "Paulo Pereira", style = MaterialTheme.typography.h5)
         Icon(imageVector = Icons.Default.Email, contentDescription = null)
@@ -76,7 +77,7 @@ fun Socials(
     socials: Iterable<SocialInfo>
 ) {
     Column(
-        modifier = Modifier.width(120.dp)
+        modifier = Modifier.widthIn(min = 60.dp, max = 120.dp)
     ) {
         socials.forEach {
             Social(id = it.imageId, onClick = { onOpenUrlRequested(it.link) })

@@ -12,9 +12,6 @@ import palbp.laboratory.demos.quoteofday.ui.NavigateBackTestTag
 import palbp.laboratory.demos.quoteofday.ui.NavigateToHistoryTestTag
 import palbp.laboratory.demos.quoteofday.ui.NavigateToInfoTestTag
 
-/**
- * Instrumented test, which will execute on an Android device.
- */
 @RunWith(AndroidJUnit4::class)
 class InfoActivityTests {
 

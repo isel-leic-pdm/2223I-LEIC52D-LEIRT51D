@@ -14,9 +14,6 @@ import palbp.laboratory.demos.quoteofday.ui.NavigateBackTestTag
 import palbp.laboratory.demos.quoteofday.ui.NavigateToHistoryTestTag
 import palbp.laboratory.demos.quoteofday.ui.NavigateToInfoTestTag
 
-/**
- * Instrumented test, which will execute on an Android device.
- */
 @RunWith(AndroidJUnit4::class)
 class QuoteActivityTests {
 
@@ -37,7 +34,6 @@ class QuoteActivityTests {
         testRule.onNodeWithTag(NavigateToInfoTestTag).assertExists()
         testRule.onNodeWithTag(NavigateBackTestTag).assertDoesNotExist()
     }
-
 
     @Test
     fun displayed_quote_survives_reconfiguration() {

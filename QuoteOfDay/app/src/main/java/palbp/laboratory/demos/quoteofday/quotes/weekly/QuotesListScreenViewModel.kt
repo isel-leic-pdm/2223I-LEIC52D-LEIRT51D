@@ -17,18 +17,21 @@ class QuotesListScreenViewModel(
     val isLoading: Boolean
         get() = _isLoading
 
-    private var _quotes by mutableStateOf<List<Quote>>(emptyList())
-    val quotes: List<Quote>
+    private var _quotes by mutableStateOf<Result<List<Quote>>?>(null)
+    val quotes: Result<List<Quote>>?
         get() = _quotes
 
-    fun fetchWeekQuotes(forcedRefresh: Boolean = true) {
-        // TODO: Check if we have connectivity and call QuoteService accordingly
+    fun fetchWeekQuotes(forcedRefresh: Boolean = false) {
         viewModelScope.launch {
             _isLoading = true
-            _quotes = quoteService.fetchWeekQuotes(
-                if (forcedRefresh) QuoteService.Mode.FORCE_REMOTE
-                else QuoteService.Mode.AUTO
-            )
+            _quotes =
+                try {
+                    Result.success(quoteService.fetchWeekQuotes(
+                            if (forcedRefresh) QuoteService.Mode.FORCE_REMOTE
+                            else QuoteService.Mode.AUTO
+                    ))
+                }
+                catch (e: Exception) { Result.failure(e) }
             _isLoading = false
         }
     }

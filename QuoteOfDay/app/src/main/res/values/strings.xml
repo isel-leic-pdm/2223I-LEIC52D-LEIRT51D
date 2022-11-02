@@ -4,4 +4,10 @@
     <string name="top_bar_navigate_to_info">Display application\'s information</string>
     <string name="top_bar_navigate_to_history">Display the quotes of the week</string>
     <string name="top_bar_go_back">Go back</string>
+
+    <string name="error_api_title">Error accessing the server</string>
+    <string name="error_retry_button_text">Retry</string>
+    <string name="error_exit_button_text">Exit</string>
+    <string name="error_unknown_api_response">Please ensure the application is updated</string>
+    <string name="error_could_not_reach_api">Please check if the device is connected to the internet</string>
 </resources>

@@ -14,9 +14,6 @@ import palbp.laboratory.demos.quoteofday.ui.NavigateToInfoTestTag
 import palbp.laboratory.demos.quoteofday.testutils.assertNotEmpty
 import palbp.laboratory.demos.quoteofday.testutils.isExpanded
 
-/**
- * Instrumented test, which will execute on an Android device.
- */
 @RunWith(AndroidJUnit4::class)
 class QuotesListActivityTests {
 

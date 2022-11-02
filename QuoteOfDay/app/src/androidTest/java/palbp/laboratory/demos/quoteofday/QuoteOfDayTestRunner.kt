@@ -3,31 +3,29 @@ package palbp.laboratory.demos.quoteofday
 import android.app.Application
 import android.content.Context
 import androidx.test.runner.AndroidJUnitRunner
+import io.mockk.coEvery
+import io.mockk.mockk
 import palbp.laboratory.demos.quoteofday.quotes.Quote
 import palbp.laboratory.demos.quoteofday.quotes.QuoteService
 
-private class TestFakeQuoteService : QuoteService {
-
-    override suspend fun fetchQuote(mode: QuoteService.Mode): Quote {
-        return Quote(text = "Test text", author = "Test author")
-    }
-
-    override suspend fun fetchWeekQuotes(mode: QuoteService.Mode): List<Quote> {
-        return buildList {
-            for (count in 1..5) {
-                add(
-                    Quote(
-                        text = "Test text $count",
-                        author = "Test author $count"
-                    )
-                )
-            }
-        }
-    }
-}
-
 class QuoteOfDayTestApplication : DependenciesContainer, Application() {
-    override val quoteService: QuoteService by lazy { TestFakeQuoteService() }
+    override var quoteService: QuoteService =
+        mockk {
+            coEvery { fetchQuote() } returns
+                Quote(text = "Test text", author = "Test author")
+
+            coEvery { fetchWeekQuotes() } returns
+                buildList {
+                    for (count in 1..5) {
+                        add(
+                            Quote(
+                                text = "Test text $count",
+                                author = "Test author $count"
+                            )
+                        )
+                    }
+                }
+        }
 }
 
 @Suppress("unused")

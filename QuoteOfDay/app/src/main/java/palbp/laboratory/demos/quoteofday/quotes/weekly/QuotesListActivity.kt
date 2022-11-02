@@ -7,14 +7,19 @@ import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.runtime.Composable
 import palbp.laboratory.demos.quoteofday.DependenciesContainer
+import palbp.laboratory.demos.quoteofday.R
 import palbp.laboratory.demos.quoteofday.TAG
 import palbp.laboratory.demos.quoteofday.info.InfoActivity
+import palbp.laboratory.demos.quoteofday.quotes.ApiException
 import palbp.laboratory.demos.quoteofday.quotes.daily.QuoteActivity
 import palbp.laboratory.demos.quoteofday.quotes.toLocalDto
+import palbp.laboratory.demos.quoteofday.ui.ErrorAlert
 import palbp.laboratory.demos.quoteofday.ui.NavigationHandlers
 import palbp.laboratory.demos.quoteofday.ui.RefreshingState
 import palbp.laboratory.demos.quoteofday.utils.viewModelInit
+import java.io.IOException
 
 /**
  * The activity that hosts the screen for displaying a list of quotes. The
@@ -43,14 +48,16 @@ class QuotesListActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         Log.v(TAG, "QuotesListActivity.onCreate()")
         setContent {
-            if (viewModel.quotes.isEmpty())
-                viewModel.fetchWeekQuotes(forcedRefresh = false)
+            if (viewModel.quotes == null)
+                viewModel.fetchWeekQuotes()
 
             val loadingState =
                 if (viewModel.isLoading) RefreshingState.Refreshing
                 else RefreshingState.Idle
+
+            val quotes = viewModel.quotes?.getOrNull() ?: emptyList()
             QuotesListScreen(
-                state = QuotesListScreenState(viewModel.quotes, loadingState),
+                state = QuotesListScreenState(quotes, loadingState),
                 onQuoteSelected = {
                     QuoteActivity.navigate(origin = this, quote = it.toLocalDto())
                 },
@@ -59,6 +66,30 @@ class QuotesListActivity : ComponentActivity() {
                     onBackRequested = { finish() },
                     onInfoRequested = { InfoActivity.navigate(origin = this) }
                 )
+            )
+
+            if (viewModel.quotes?.isFailure == true)
+                ErrorMessage()
+        }
+    }
+
+    @Composable
+    private fun ErrorMessage() {
+        try { viewModel.quotes?.getOrThrow() }
+        catch (e: IOException) {
+            ErrorAlert(
+                title = R.string.error_api_title,
+                message = R.string.error_could_not_reach_api,
+                buttonText = R.string.error_retry_button_text,
+                onDismiss = { viewModel.fetchWeekQuotes() }
+            )
+        }
+        catch (e: ApiException) {
+            ErrorAlert(
+                title = R.string.error_api_title,
+                message = R.string.error_unknown_api_response,
+                buttonText = R.string.error_exit_button_text,
+                onDismiss = { finishAndRemoveTask() }
             )
         }
     }

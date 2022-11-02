@@ -13,7 +13,7 @@ import palbp.laboratory.demos.quoteofday.TAG
  * We use the work manager to keep the local cache warm.
  *
  * In this case we are using a single worker to fetch both the quote of day and
- * the weeks' quotes., thereby making sure network accesses are as close to each
+ * the weeks' quotes, thereby making sure network accesses are as close to each
  * other as possible.
  *
  * We could instead chain work items (a.k.a chained tasks), if their execution
@@ -22,17 +22,16 @@ import palbp.laboratory.demos.quoteofday.TAG
 class QuotesWorker(appContext: Context, params: WorkerParameters) :
     CoroutineWorker(appContext, params)
 {
-    override suspend fun doWork(): Result =
-        withContext(Dispatchers.IO) {
-            Log.v(TAG, "QuotesWorker is executing")
-            val dependencies = applicationContext as DependenciesContainer
-            try {
-                dependencies.quoteService.fetchQuote(mode = QuoteService.Mode.FORCE_REMOTE)
-                dependencies.quoteService.fetchWeekQuotes(mode = QuoteService.Mode.FORCE_REMOTE)
-                Result.success()
-            }
-            catch (e: Exception) {
-                Result.failure()
-            }
+    override suspend fun doWork(): Result {
+        Log.v(TAG, "QuotesWorker is executing")
+        val service = (applicationContext as DependenciesContainer).quoteService
+        return try {
+            service.fetchQuote(mode = QuoteService.Mode.FORCE_REMOTE)
+            service.fetchWeekQuotes(mode = QuoteService.Mode.FORCE_REMOTE)
+            Result.success()
         }
+        catch (e: Exception) {
+            Result.failure()
+        }
+    }
 }

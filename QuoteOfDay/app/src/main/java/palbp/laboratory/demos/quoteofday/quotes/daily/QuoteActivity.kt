@@ -8,15 +8,20 @@ import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.runtime.Composable
 import palbp.laboratory.demos.quoteofday.DependenciesContainer
+import palbp.laboratory.demos.quoteofday.R
 import palbp.laboratory.demos.quoteofday.TAG
 import palbp.laboratory.demos.quoteofday.info.InfoActivity
+import palbp.laboratory.demos.quoteofday.quotes.ApiException
 import palbp.laboratory.demos.quoteofday.quotes.LocalQuoteDto
 import palbp.laboratory.demos.quoteofday.quotes.Quote
 import palbp.laboratory.demos.quoteofday.quotes.weekly.QuotesListActivity
+import palbp.laboratory.demos.quoteofday.ui.ErrorAlert
 import palbp.laboratory.demos.quoteofday.ui.NavigationHandlers
 import palbp.laboratory.demos.quoteofday.ui.RefreshingState
 import palbp.laboratory.demos.quoteofday.utils.viewModelInit
+import java.io.IOException
 
 /**
  * The activity that hosts the screen for displaying a single quote. The quote
@@ -61,20 +66,45 @@ class QuoteActivity : ComponentActivity() {
             }
             else {
                 if (viewModel.quote == null)
-                    viewModel.fetchQuote(forcedRefresh = false)
+                    viewModel.fetchQuote()
 
                 val loadingState: RefreshingState =
                     if (viewModel.isLoading) RefreshingState.Refreshing
                     else RefreshingState.Idle
+
                 QuoteScreen(
-                    state = QuoteScreenState(viewModel.quote, loadingState),
+                    state = QuoteScreenState(viewModel.quote?.getOrNull(), loadingState),
                     onUpdateRequest = { viewModel.fetchQuote(forcedRefresh = true) },
                     onNavigationRequested = NavigationHandlers(
                         onInfoRequested = { InfoActivity.navigate(origin = this) },
                         onHistoryRequested = { QuotesListActivity.navigate(origin = this) }
                     )
                 )
+
+                if (viewModel.quote?.isFailure == true)
+                    ErrorMessage()
             }
+        }
+    }
+
+    @Composable
+    private fun ErrorMessage() {
+        try { viewModel.quote?.getOrThrow() }
+        catch (e: IOException) {
+            ErrorAlert(
+                title = R.string.error_api_title,
+                message = R.string.error_could_not_reach_api,
+                buttonText = R.string.error_retry_button_text,
+                onDismiss = { viewModel.fetchQuote() }
+            )
+        }
+        catch (e: ApiException) {
+            ErrorAlert(
+                title = R.string.error_api_title,
+                message = R.string.error_unknown_api_response,
+                buttonText = R.string.error_exit_button_text,
+                onDismiss = { finishAndRemoveTask() }
+            )
         }
     }
 
