@@ -176,7 +176,7 @@ Other links:
 * [HTTP Caching - MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching)
 * [HTTP Caching - RFC 9111](https://httpwg.org/specs/rfc9111.html)
 
-Lecture video (in Portuguese) _(coming soon)_
+[Lecture video (in Portuguese) _(coming soon)](https://www.youtube.com/watch?v=tu55lJC7D5I&list=PL8XxoCaL3dBhGZmXh2_SdA-RdeVxuf8Mv&index=8)
 
 ### 28/10/2022 - Execution in Android: continued
 
@@ -190,6 +190,23 @@ Lecture video (in Portuguese) _(coming soon)_
 
 Other links:
 * [https://dontkillmyapp.com/](https://dontkillmyapp.com/)
-* * [Testing Worker implementation](https://developer.android.com/topic/libraries/architecture/workmanager/how-to/testing-worker-impl)
+* [Testing Worker implementation](https://developer.android.com/topic/libraries/architecture/workmanager/how-to/testing-worker-impl)
+
+[Lecture video (in Portuguese)](https://www.youtube.com/watch?v=P4uVTUlTydU&list=PL8XxoCaL3dBhGZmXh2_SdA-RdeVxuf8Mv&index=10)
+
+## Week 8
+### 02/11/2022
+
+* Practical class dedicated to the development of the course's project
+
+### 04/11/2022 - Automatic tests in Android, revisited
+
+* Building automated tests in Android, revisited
+  * Testing domain artifacts with JUnit tests
+  * Testing artifacts that depend on the Android runtime with instrumented tests
+* Test doubles: fakes and mocks, revisited
+  * [Using Mocck in Android](https://mockk.io)
+* A consensual approach to software development
+  * [Test Driven Development (introduction)](https://en.wikipedia.org/wiki/Test-driven_development)
 
 Lecture video (in Portuguese) _(coming soon)_
