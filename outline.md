@@ -216,7 +216,7 @@ Other links:
 
 * Practical class dedicated to the development of the course's project
 
-### 11/11/2022 - Building the TicTacToe application _(preview)_
+### 11/11/2022 - Building the TicTacToe application: part 1
 * Live coding session:
   * Building the TicTacToe application from scratch, starting with the automated tests
   * Considerations on software design driven by the need to automated testing
@@ -224,6 +224,6 @@ Other links:
   * Persistent storage using [shared preferences]((https://developer.android.com/training/data-storage/shared-preferences))
 
 Other links:
-* [Workin with fonts](https://developer.android.com/jetpack/compose/text#fonts)
+* [Working with fonts](https://developer.android.com/jetpack/compose/text#fonts)
 
-Lecture video (in Portuguese) _(coming soon)_
+[Lecture video (in Portuguese)](https://www.youtube.com/watch?v=OXUiX-ur2dw&list=PL8XxoCaL3dBhGZmXh2_SdA-RdeVxuf8Mv&index=11)

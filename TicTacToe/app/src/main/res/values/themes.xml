@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.TicTacToe" parent="Theme.TicTacToe.NoActionBar">
+        <item name="android:statusBarColor">@color/status_bar</item>
+    </style>
+
+    <style
+        name="Theme.TicTacToe.NoActionBar"
+        parent="@android:style/Theme.Material.Light.NoActionBar" />
+</resources>
