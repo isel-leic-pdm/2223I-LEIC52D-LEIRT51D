@@ -227,3 +227,39 @@ Other links:
 * [Working with fonts](https://developer.android.com/jetpack/compose/text#fonts)
 
 [Lecture video (in Portuguese)](https://www.youtube.com/watch?v=OXUiX-ur2dw&list=PL8XxoCaL3dBhGZmXh2_SdA-RdeVxuf8Mv&index=11)
+
+## Week 10
+### 16/11/2022 - Building the TicTacToe application: part 2
+* Live coding session:
+  * Building the TicTacToe application from scratch, starting with the automated tests
+  * Considerations on software design driven by the need to automated testing
+
+Lecture video (in Portuguese) _(coming soon)_
+
+### 18/11/2022 - Android application design, continued _(preview)_
+* Considerations on the design of Android applications
+* Interaction models: 
+  * Pull based using suspending functions (as we've been doing so far)
+  * Push based (a.k.a. reactive), using Kotlin Flows
+* Primitives for propagating state from the data sources to the UI
+  * [StateFlow](https://developer.android.com/kotlin/flow/stateflow-and-sharedflow)
+  * [collectAsState](https://developer.android.com/reference/kotlin/androidx/compose/runtime/package-summary#(kotlinx.coroutines.flow.StateFlow).collectAsState(kotlin.coroutines.CoroutineContext))
+* Lifecycle and lifecycle owners
+  * [Handling lifecycle events explicitely](https://developer.android.com/topic/libraries/architecture/lifecycle):
+    * by overriding lifecycle owners' callbacks (e.g. the Activity's lifecycle callbacks) 
+    * by registering lifecycle observers
+  * Reacting to lifecycle changes implicitely, by using coroutines' scopes:
+    * [viewModelScope](https://developer.android.com/topic/libraries/architecture/coroutines#viewmodelscope), revisited
+    * [lifecycleScope](https://developer.android.com/topic/libraries/architecture/coroutines#lifecyclescope)
+    * [repeatOnLifeCycle](https://developer.android.com/topic/libraries/architecture/coroutines#restart)
+
+* Materialization of the discussed subjects on the TicTacToe application
+  * Implementing the game's lobby: part 1
+
+Lecture video (in Portuguese) _(coming soon)_
+
+Other links: 
+* [Testing Kotlin flows on Android](https://developer.android.com/kotlin/flow/test)
+* [Recomendations for Android architecture](https://developer.android.com/topic/architecture/recommendations)
+
+
