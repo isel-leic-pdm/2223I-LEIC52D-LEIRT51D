@@ -2,10 +2,10 @@ package palbp.laboratory.demos.tictactoe
 
 import android.app.Application
 import android.content.Context
+import android.util.Log
 import androidx.test.runner.AndroidJUnitRunner
 import io.mockk.every
 import io.mockk.mockk
-import palbp.laboratory.demos.tictactoe.DependenciesContainer
 import palbp.laboratory.demos.tictactoe.preferences.UserInfo
 import palbp.laboratory.demos.tictactoe.preferences.UserInfoRepository
 
@@ -14,7 +14,7 @@ import palbp.laboratory.demos.tictactoe.preferences.UserInfoRepository
  */
 class TicTacToeTestApplication : DependenciesContainer, Application() {
     override var userInfoRepo: UserInfoRepository =
-        mockk(relaxed = true) {
+        mockk {
             every { userInfo } returns UserInfo("nick", "moto")
         }
 }

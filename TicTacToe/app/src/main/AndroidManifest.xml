@@ -11,6 +11,7 @@
         android:roundIcon="@mipmap/ic_tic_tac_toe"
         android:supportsRtl="true"
         android:theme="@style/Theme.TicTacToe"
+        android:name=".TicTacToeApplication"
         tools:targetApi="31">
         <activity
             android:name=".main.MainActivity"
@@ -27,6 +28,14 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+        <activity
+            android:name=".lobby.LobbyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".preferences.PreferencesActivity"
+            android:exported="false"
+            android:noHistory="true" />
+
     </application>
 
 </manifest>

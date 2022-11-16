@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">Tic Tac Toe</string>
     <string name="start_game_button_text">Play</string>
+
+    <string name="top_bar_go_back">Go back</string>
+    <string name="top_bar_navigate_to_prefs">Display preferences screen</string>
+
+    <string name="preferences_screen_title">How others see you</string>
+    <string name="preferences_screen_nickname_tip">Your nickname</string>
+    <string name="preferences_screen_moto_tip">Your moto</string>
+
+    <string name="lobby_screen_title">Available players</string>
 </resources>

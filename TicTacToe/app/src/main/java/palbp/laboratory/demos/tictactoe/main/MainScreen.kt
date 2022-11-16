@@ -22,7 +22,7 @@ import palbp.laboratory.demos.tictactoe.R
 import palbp.laboratory.demos.tictactoe.ui.theme.TicTacToeTheme
 
 @Composable
-fun MainScreen() {
+fun MainScreen(onStartRequested: () -> Unit) {
     TicTacToeTheme {
         Surface(
             modifier = Modifier
@@ -49,7 +49,7 @@ fun MainScreen() {
                 )
 
                 Button(
-                    onClick = { },
+                    onClick = onStartRequested,
                     modifier = Modifier.testTag("PlayButton")
                 ) {
                     Text(
@@ -64,5 +64,5 @@ fun MainScreen() {
 @Preview(showBackground = true)
 @Composable
 fun MainScreenPreview() {
-    MainScreen()
+    MainScreen(onStartRequested = { })
 }

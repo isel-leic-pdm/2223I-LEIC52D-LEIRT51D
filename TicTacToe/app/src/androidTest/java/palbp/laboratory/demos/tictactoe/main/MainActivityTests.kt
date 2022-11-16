@@ -12,6 +12,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import palbp.laboratory.demos.tictactoe.TicTacToeTestApplication
+import palbp.laboratory.demos.tictactoe.lobby.LobbyScreenTag
 
 @RunWith(AndroidJUnit4::class)
 class MainActivityTests {
@@ -35,7 +36,7 @@ class MainActivityTests {
         testRule.waitForIdle()
 
         // Assert
-        testRule.onNodeWithTag("LobbyScreen").assertExists()
+        testRule.onNodeWithTag(LobbyScreenTag).assertExists()
     }
 
     @Test
