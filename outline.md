@@ -265,6 +265,9 @@ Other links:
     * [lifecycleScope](https://developer.android.com/topic/libraries/architecture/coroutines#lifecyclescope)
     * [repeatOnLifeCycle](https://developer.android.com/topic/libraries/architecture/coroutines#restart)
 
+* State management, continued:
+  * Persistent storage using [Room](https://developer.android.com/training/data-storage/room)
+
 * Materialization of the discussed subjects on the TicTacToe application
   * Implementing the game's lobby using Firestore
 
