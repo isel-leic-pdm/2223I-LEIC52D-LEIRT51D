@@ -1,5 +1,6 @@
 package palbp.laboratory.demos.tictactoe.ui
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -20,12 +21,14 @@ const val UserInfoViewTag = "UserInfoView"
 @Composable
 fun UserInfoView(
     userInfo: UserInfo,
+    onUserSelected: (UserInfo) -> Unit
 ) {
     Card(
         shape = MaterialTheme.shapes.medium,
         elevation = 4.dp,
         modifier = Modifier
             .fillMaxWidth()
+            .clickable { onUserSelected(userInfo) }
             .testTag(UserInfoViewTag)
     ) {
         Column(
@@ -60,6 +63,7 @@ private fun UserInfoViewNoMotoPreview() {
     TicTacToeTheme {
         UserInfoView(
             userInfo = UserInfo("My Nick"),
+            onUserSelected = { }
         )
     }
 }
@@ -70,6 +74,7 @@ private fun UserInfoViewPreview() {
     TicTacToeTheme {
         UserInfoView(
             userInfo = UserInfo("My Nick", "This is my moto"),
+            onUserSelected = { }
         )
     }
 }

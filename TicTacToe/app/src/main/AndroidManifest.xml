@@ -36,6 +36,9 @@
             android:exported="false"
             android:noHistory="true" />
 
+        <activity
+            android:name=".game.GameActivity"
+            android:exported="false">
+        </activity>
     </application>
-
 </manifest>

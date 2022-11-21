@@ -29,6 +29,7 @@ data class LobbyScreenState(
 @Composable
 fun LobbyScreen(
     state: LobbyScreenState = LobbyScreenState(),
+    onPlayerSelected: (UserInfo) -> Unit = { },
     onBackRequested: () -> Unit = { },
     onPreferencesRequested: () -> Unit = { }
 ) {
@@ -63,7 +64,7 @@ fun LobbyScreen(
                     modifier = Modifier.padding(innerPadding)
                 ) {
                     items(state.players) {
-                        UserInfoView(userInfo = it)
+                        UserInfoView(userInfo = it, onPlayerSelected)
                     }
                 }
             }
