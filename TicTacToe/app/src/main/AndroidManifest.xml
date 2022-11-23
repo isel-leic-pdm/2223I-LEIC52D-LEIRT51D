@@ -35,6 +35,9 @@
             android:name=".preferences.PreferencesActivity"
             android:exported="false"
             android:noHistory="true" />
+        <activity
+            android:name=".lobby.LobbyActivityReactive"
+            android:exported="false" />
 
         <activity
             android:name=".game.GameActivity"

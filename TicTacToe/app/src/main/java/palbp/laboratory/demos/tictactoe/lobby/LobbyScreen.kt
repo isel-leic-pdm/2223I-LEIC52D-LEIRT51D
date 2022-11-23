@@ -23,7 +23,7 @@ import palbp.laboratory.demos.tictactoe.ui.theme.TicTacToeTheme
 const val LobbyScreenTag = "LobbyScreen"
 
 data class LobbyScreenState(
-    val players: List<UserInfo> = emptyList()
+    val players: List<PlayerInfo> = emptyList()
 )
 
 @Composable
@@ -64,7 +64,7 @@ fun LobbyScreen(
                     modifier = Modifier.padding(innerPadding)
                 ) {
                     items(state.players) {
-                        UserInfoView(userInfo = it, onPlayerSelected)
+                        UserInfoView(userInfo = it.info, onPlayerSelected)
                     }
                 }
             }
@@ -84,6 +84,8 @@ fun MainScreenPreview() {
 
 private val players = buildList {
     repeat(30) {
-        add(UserInfo("My Nick $it", "This is my $it moto"))
+        add(PlayerInfo(
+            UserInfo("My Nick $it", "This is my $it moto"))
+        )
     }
 }

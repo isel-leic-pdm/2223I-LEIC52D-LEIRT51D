@@ -20,17 +20,10 @@ import palbp.laboratory.demos.tictactoe.utils.viewModelInit
 
 class LobbyActivity : ComponentActivity() {
 
-    private val viewModelPull by viewModels<LobbyScreenViewModelPull> {
-        viewModelInit {
-            val lobby = (application as DependenciesContainer).lobbyPull
-            LobbyScreenViewModelPull(lobby)
-        }
-    }
-
     private val viewModel by viewModels<LobbyScreenViewModel> {
         viewModelInit {
-            val lobby = (application as DependenciesContainer).lobby
-            LobbyScreenViewModel(lobby)
+            val app = (application as DependenciesContainer)
+            LobbyScreenViewModel(app.lobby, app.userInfoRepo)
         }
     }
 
@@ -47,7 +40,6 @@ class LobbyActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            // val players = viewModelPull.players
             val players by viewModel.players.collectAsState()
             LobbyScreen(
                 state = LobbyScreenState(players),
@@ -63,13 +55,11 @@ class LobbyActivity : ComponentActivity() {
             override fun onStart(owner: LifecycleOwner) {
                 Log.v(TAG, "LobbyActivity.onStart()")
                 viewModel.enterLobby()
-                //viewModelPull.enterLobby()
             }
 
             override fun onStop(owner: LifecycleOwner) {
                 Log.v(TAG, "LobbyActivity.onStop()")
-                viewModel.enterLobby()
-                //viewModelPull.leaveLobby()
+                viewModel.leaveLobby()
             }
         })
     }
