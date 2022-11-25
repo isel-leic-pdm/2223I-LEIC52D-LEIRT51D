@@ -12,7 +12,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import palbp.laboratory.demos.tictactoe.TicTacToeTestApplication
-import palbp.laboratory.demos.tictactoe.lobby.LobbyScreenTag
+import palbp.laboratory.demos.tictactoe.game.lobby.LobbyScreenTag
 
 @RunWith(AndroidJUnit4::class)
 class MainActivityTests {

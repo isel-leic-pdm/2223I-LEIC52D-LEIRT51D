@@ -1,4 +1,4 @@
-package palbp.laboratory.demos.tictactoe.lobby
+package palbp.laboratory.demos.tictactoe.game.lobby
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -84,7 +84,8 @@ fun MainScreenPreview() {
 
 private val players = buildList {
     repeat(30) {
-        add(PlayerInfo(
+        add(
+            PlayerInfo(
             UserInfo("My Nick $it", "This is my $it moto"))
         )
     }

@@ -12,7 +12,7 @@ import org.junit.Assert.*
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import palbp.laboratory.demos.tictactoe.lobby.LobbyScreenTag
+import palbp.laboratory.demos.tictactoe.game.lobby.LobbyScreenTag
 import palbp.laboratory.demos.tictactoe.testutils.PreserveDefaultDependencies
 import palbp.laboratory.demos.tictactoe.testutils.assertIsNotReadOnly
 import palbp.laboratory.demos.tictactoe.testutils.createPreserveDefaultDependenciesComposeRule

@@ -1,4 +1,4 @@
-package palbp.laboratory.demos.tictactoe.lobby
+package palbp.laboratory.demos.tictactoe.game.lobby
 
 import android.content.Context
 import android.content.Intent
@@ -10,11 +10,10 @@ import androidx.compose.runtime.Composable
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import palbp.laboratory.demos.tictactoe.DependenciesContainer
 import palbp.laboratory.demos.tictactoe.TAG
-import palbp.laboratory.demos.tictactoe.game.GameActivity
+import palbp.laboratory.demos.tictactoe.game.play.GameActivity
 import palbp.laboratory.demos.tictactoe.preferences.PreferencesActivity
 import palbp.laboratory.demos.tictactoe.preferences.UserInfo
 
@@ -49,7 +48,7 @@ class LobbyActivityReactive : ComponentActivity() {
             Log.v(TAG, "Launching lifecycleScoped coroutine")
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 Log.v(TAG, "Launching repeatOnLifecycle coroutine")
-                val lobbyFlow = lobby.enter(PlayerInfo(localUser))
+                val lobbyFlow = lobby.enterAndObserve(PlayerInfo(localUser))
                 lobbyFlow.collect {
                     Log.v(TAG, "Inside collect")
                     setContent {

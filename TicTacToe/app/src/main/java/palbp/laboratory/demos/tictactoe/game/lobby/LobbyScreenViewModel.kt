@@ -1,4 +1,4 @@
-package palbp.laboratory.demos.tictactoe.lobby
+package palbp.laboratory.demos.tictactoe.game.lobby
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
@@ -28,7 +28,7 @@ class LobbyScreenViewModel(
             val localUserInfo = checkNotNull(userInfoRepository.userInfo)
             lobbyMonitor = viewModelScope.launch {
                 Log.v(TAG, "Starting view-model scoped coroutine")
-                val lobbyFlow = lobby.enter(PlayerInfo(localUserInfo))
+                val lobbyFlow = lobby.enterAndObserve(PlayerInfo(localUserInfo))
                 lobbyFlow.collect {
                     Log.v(TAG, "collecting element from flow")
                     _players.value = it

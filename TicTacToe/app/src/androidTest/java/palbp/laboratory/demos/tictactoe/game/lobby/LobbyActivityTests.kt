@@ -1,4 +1,4 @@
-package palbp.laboratory.demos.tictactoe.lobby
+package palbp.laboratory.demos.tictactoe.game.lobby
 
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithTag
@@ -8,6 +8,8 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import palbp.laboratory.demos.tictactoe.game.lobby.LobbyActivity
+import palbp.laboratory.demos.tictactoe.game.lobby.LobbyScreenTag
 import palbp.laboratory.demos.tictactoe.preferences.PreferencesScreenTag
 import palbp.laboratory.demos.tictactoe.ui.NavigateBackTag
 import palbp.laboratory.demos.tictactoe.ui.NavigateToPreferencesTag

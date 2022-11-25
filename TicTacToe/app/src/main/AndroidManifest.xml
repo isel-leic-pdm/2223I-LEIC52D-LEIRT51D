@@ -29,18 +29,18 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".lobby.LobbyActivity"
+            android:name=".game.lobby.LobbyActivity"
             android:exported="false" />
         <activity
             android:name=".preferences.PreferencesActivity"
             android:exported="false"
             android:noHistory="true" />
         <activity
-            android:name=".lobby.LobbyActivityReactive"
+            android:name=".game.lobby.LobbyActivityReactive"
             android:exported="false" />
 
         <activity
-            android:name=".game.GameActivity"
+            android:name=".game.play.GameActivity"
             android:exported="false">
         </activity>
     </application>

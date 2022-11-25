@@ -1,4 +1,4 @@
-package palbp.laboratory.demos.tictactoe.lobby
+package palbp.laboratory.demos.tictactoe.game.lobby
 
 import android.content.Context
 import android.content.Intent
@@ -10,11 +10,10 @@ import androidx.activity.viewModels
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.DefaultLifecycleObserver
-import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import palbp.laboratory.demos.tictactoe.DependenciesContainer
 import palbp.laboratory.demos.tictactoe.TAG
-import palbp.laboratory.demos.tictactoe.game.GameActivity
+import palbp.laboratory.demos.tictactoe.game.play.GameActivity
 import palbp.laboratory.demos.tictactoe.preferences.PreferencesActivity
 import palbp.laboratory.demos.tictactoe.utils.viewModelInit
 

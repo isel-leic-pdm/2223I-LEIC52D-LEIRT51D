@@ -1,4 +1,4 @@
-package palbp.laboratory.demos.tictactoe.game
+package palbp.laboratory.demos.tictactoe.game.play
 
 import android.content.Context
 import android.content.Intent
