@@ -1,10 +1,13 @@
 package palbp.laboratory.demos.tictactoe.game.lobby
 
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.compose.ui.test.onAllNodesWithTag
+import androidx.compose.ui.test.onFirst
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
 import androidx.lifecycle.Lifecycle
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import org.junit.Assert.fail
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -28,6 +31,8 @@ class LobbyActivityTests {
     @Test
     fun pressing_navigate_back_finishes_activity() {
 
+        testRule.onNodeWithTag(NavigateBackTag).assertExists()
+
         // Act
         testRule.onNodeWithTag(NavigateBackTag).performClick()
         testRule.waitForIdle()
@@ -39,7 +44,6 @@ class LobbyActivityTests {
 
     @Test
     fun pressing_navigate_to_settings_displays_preferences_activity() {
-
         // Act
         testRule.onNodeWithTag(PreferencesScreenTag).assertDoesNotExist()
         testRule.onNodeWithTag(NavigateToPreferencesTag).performClick()
@@ -47,5 +51,10 @@ class LobbyActivityTests {
 
         // Assert
         testRule.onNodeWithTag(PreferencesScreenTag).assertExists()
+    }
+
+    @Test
+    fun pressing_a_player_card_navigates_to_game_screen() {
+        fail()
     }
 }

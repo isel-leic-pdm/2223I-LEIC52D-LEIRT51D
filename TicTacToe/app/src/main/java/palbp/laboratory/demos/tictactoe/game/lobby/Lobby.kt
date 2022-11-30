@@ -10,5 +10,5 @@ interface Lobby {
     suspend fun getPlayers(): List<PlayerInfo>
     suspend fun enter(localPlayer: PlayerInfo): List<PlayerInfo>
     fun enterAndObserve(localPlayer: PlayerInfo): Flow<List<PlayerInfo>>
-    fun leave()
+    suspend fun leave()
 }

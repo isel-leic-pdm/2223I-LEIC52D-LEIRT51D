@@ -18,7 +18,7 @@ val otherTestPlayersInLobby: List<PlayerInfo> = buildList {
 
 class PopulatedFirebaseLobby : TestRule {
 
-    private val app: TicTacToeTestApplication by lazy {
+    val app: TicTacToeTestApplication by lazy {
         InstrumentationRegistry
             .getInstrumentation()
             .targetContext

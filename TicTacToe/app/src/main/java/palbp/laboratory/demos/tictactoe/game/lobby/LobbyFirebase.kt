@@ -1,8 +1,11 @@
 package palbp.laboratory.demos.tictactoe.game.lobby
 
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.QueryDocumentSnapshot
+import com.google.firebase.firestore.*
+import kotlinx.coroutines.channels.ProducerScope
+import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.tasks.await
 import palbp.laboratory.demos.tictactoe.preferences.UserInfo
 import java.util.*
 
@@ -10,22 +13,81 @@ const val LOBBY = "lobby"
 private const val NICK_FIELD = "nick"
 private const val MOTO_FIELD = "moto"
 
+/**
+ * Sum type that characterizes the lobby state
+ */
+sealed class LobbyState
+class InUse(val localPlayerDocRef: DocumentReference): LobbyState()
+class InUseWithFlow(val scope: ProducerScope<List<PlayerInfo>>) : LobbyState()
+object Idle : LobbyState()
+
 
 class LobbyFirebase(private val db: FirebaseFirestore) : Lobby {
+
+    private var state: LobbyState = Idle
+
+    private suspend fun addLocalPlayer(localPlayer: PlayerInfo): DocumentReference {
+        val docRef = db.collection(LOBBY).document(localPlayer.id.toString())
+        docRef
+            .set(localPlayer.info.toDocumentContent())
+            .await()
+        return docRef
+    }
+
     override suspend fun getPlayers(): List<PlayerInfo> {
-        TODO("Not yet implemented")
+        try {
+            val result = db.collection(LOBBY).get().await()
+            return result.map { it.toPlayerInfo() }
+        }
+        catch (e: Throwable) {
+            throw UnreachableLobbyException()
+        }
     }
 
     override suspend fun enter(localPlayer: PlayerInfo): List<PlayerInfo> {
-        TODO("Not yet implemented")
+        check(state == Idle)
+        try {
+            state = InUse(addLocalPlayer(localPlayer))
+            return getPlayers()
+        }
+        catch (e: Throwable) {
+            throw UnreachableLobbyException()
+        }
     }
 
     override fun enterAndObserve(localPlayer: PlayerInfo): Flow<List<PlayerInfo>> {
-        TODO("Not yet implemented")
+        check(state == Idle)
+        return callbackFlow {
+            state = InUseWithFlow(this)
+            var localPlayerDocRef: DocumentReference? = null
+            var subscription: ListenerRegistration? = null
+            try {
+                localPlayerDocRef = addLocalPlayer(localPlayer)
+                subscription = db.collection(LOBBY).addSnapshotListener { snapshot, error ->
+                    when {
+                        error != null -> close(error)
+                        snapshot != null -> trySend(snapshot.toPlayerList())
+                    }
+                }
+            }
+            catch (e: Exception) {
+                close(e)
+            }
+
+            awaitClose {
+                subscription?.remove()
+                localPlayerDocRef?.delete()
+            }
+        }
     }
 
-    override fun leave() {
-        TODO("Not yet implemented")
+    override suspend fun leave() {
+        when (val currentState = state) {
+            is InUseWithFlow -> currentState.scope.close()
+            is InUse -> currentState.localPlayerDocRef.delete().await()
+            is Idle -> throw IllegalStateException()
+        }
+        state = Idle
     }
 }
 
@@ -41,6 +103,8 @@ fun QueryDocumentSnapshot.toPlayerInfo() =
         ),
         id = UUID.fromString(id),
     )
+
+fun QuerySnapshot.toPlayerList() = map { it.toPlayerInfo() }
 
 /**
  * [UserInfo] extension function used to convert an instance to a map of key-value

@@ -7,6 +7,7 @@ import androidx.test.core.app.ActivityScenario
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import io.mockk.every
 import io.mockk.mockk
+import io.mockk.slot
 import io.mockk.verify
 import org.junit.Assert.*
 import org.junit.Rule
@@ -29,7 +30,11 @@ class PreferencesActivityEditModeTests {
     }
 
     private val mockRepo: UserInfoRepository = mockk(relaxed = true) {
-        every { userInfo } returns null
+        val user = slot<UserInfo>()
+        every { userInfo = capture(user) } answers { }
+        every { userInfo } answers {
+            if (user.isCaptured) user.captured else null
+        }
     }
 
     @Test
@@ -79,7 +84,6 @@ class PreferencesActivityEditModeTests {
 
     @Test
     fun pressing_save_button_stores_info_and_navigates_to_lobby() {
-
         application.userInfoRepo = mockRepo
 
         ActivityScenario.launch(PreferencesActivity::class.java).use {

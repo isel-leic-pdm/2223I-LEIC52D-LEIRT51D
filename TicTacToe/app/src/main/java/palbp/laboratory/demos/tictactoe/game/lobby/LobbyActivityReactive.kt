@@ -45,19 +45,16 @@ class LobbyActivityReactive : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         lifecycleScope.launch {
-            Log.v(TAG, "Launching lifecycleScoped coroutine")
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                Log.v(TAG, "Launching repeatOnLifecycle coroutine")
-                val lobbyFlow = lobby.enterAndObserve(PlayerInfo(localUser))
+                val localPlayer = PlayerInfo(localUser)
+                val lobbyFlow = lobby.enterAndObserve(localPlayer)
                 lobbyFlow.collect {
-                    Log.v(TAG, "Inside collect")
                     setContent {
-                        LobbyScreenContent(it)
+                        LobbyScreenContent(it.filter { localPlayer.id != it.id })
                     }
                 }
             }
             lobby.leave()
-            Log.v(TAG, "After repeatOnLifeCycle")
         }
         setContent {
             LobbyScreenContent()

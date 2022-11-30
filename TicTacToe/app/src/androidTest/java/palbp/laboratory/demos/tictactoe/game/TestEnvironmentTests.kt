@@ -1,10 +1,14 @@
+@file:OptIn(ExperimentalCoroutinesApi::class)
+
 package palbp.laboratory.demos.tictactoe.game
 
 import androidx.test.platform.app.InstrumentationRegistry
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.test.runTest
 import org.junit.Assert
 import org.junit.Test
 import palbp.laboratory.demos.tictactoe.TicTacToeTestApplication
@@ -19,7 +23,7 @@ class TestEnvironmentTests {
     }
 
     @Test
-    fun firestore_emulator_is_running(): Unit = runBlocking {
+    fun firestore_emulator_is_running(): Unit = runTest {
         val testDocPath = "test/id"
         val actJob = launch {
             app.emulatedFirestoreDb
@@ -27,7 +31,7 @@ class TestEnvironmentTests {
                 .set(hashMapOf("property" to "value"))
                 .await()
         }
-        delay(3000)
+        actJob.join()
         Assert.assertTrue(actJob.isCompleted)
 
         // Test succeeded. Let's clean up
