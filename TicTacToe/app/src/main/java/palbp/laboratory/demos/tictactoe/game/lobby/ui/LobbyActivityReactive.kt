@@ -1,4 +1,4 @@
-package palbp.laboratory.demos.tictactoe.game.lobby
+package palbp.laboratory.demos.tictactoe.game.lobby.ui
 
 import android.content.Context
 import android.content.Intent
@@ -13,9 +13,11 @@ import androidx.lifecycle.repeatOnLifecycle
 import kotlinx.coroutines.launch
 import palbp.laboratory.demos.tictactoe.DependenciesContainer
 import palbp.laboratory.demos.tictactoe.TAG
-import palbp.laboratory.demos.tictactoe.game.play.GameActivity
-import palbp.laboratory.demos.tictactoe.preferences.PreferencesActivity
-import palbp.laboratory.demos.tictactoe.preferences.UserInfo
+import palbp.laboratory.demos.tictactoe.game.lobby.model.Lobby
+import palbp.laboratory.demos.tictactoe.game.lobby.model.PlayerInfo
+import palbp.laboratory.demos.tictactoe.game.play.ui.GameActivity
+import palbp.laboratory.demos.tictactoe.preferences.model.UserInfo
+import palbp.laboratory.demos.tictactoe.preferences.ui.PreferencesActivity
 
 /**
  * The screen used to display the list of players in the lobby, that is, available to play.
@@ -45,17 +47,17 @@ class LobbyActivityReactive : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         lifecycleScope.launch {
+            Log.v(TAG, "before repeatOnLifeCycle")
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                val localPlayer = PlayerInfo(localUser)
-                val lobbyFlow = lobby.enterAndObserve(localPlayer)
-                lobbyFlow.collect {
+                lobby.enterAndObserve(PlayerInfo(localUser)).collect {
                     setContent {
-                        LobbyScreenContent(it.filter { localPlayer.id != it.id })
+                        LobbyScreenContent(it)
                     }
                 }
             }
-            lobby.leave()
+            Log.v(TAG, "After repeatOnLifeCycle")
         }
+
         setContent {
             LobbyScreenContent()
         }

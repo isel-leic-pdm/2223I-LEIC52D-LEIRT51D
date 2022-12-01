@@ -1,6 +1,4 @@
-package palbp.laboratory.demos.tictactoe.preferences
-
-import java.util.*
+package palbp.laboratory.demos.tictactoe.preferences.model
 
 /**
  * Represents the user information.

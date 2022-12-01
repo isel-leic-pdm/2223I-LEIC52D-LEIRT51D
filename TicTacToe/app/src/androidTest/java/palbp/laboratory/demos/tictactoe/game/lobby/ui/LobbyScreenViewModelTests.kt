@@ -1,4 +1,4 @@
-package palbp.laboratory.demos.tictactoe.game.lobby
+package palbp.laboratory.demos.tictactoe.game.lobby.ui
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
@@ -9,7 +9,9 @@ import org.junit.Assert.*
 import org.junit.Test
 import org.junit.runner.RunWith
 import palbp.laboratory.demos.tictactoe.DependenciesContainer
-import palbp.laboratory.demos.tictactoe.preferences.UserInfoRepository
+import palbp.laboratory.demos.tictactoe.game.lobby.model.PlayerInfo
+import palbp.laboratory.demos.tictactoe.localTestPlayer
+import palbp.laboratory.demos.tictactoe.preferences.model.UserInfoRepository
 import palbp.laboratory.demos.tictactoe.testutils.SuspendingCountDownLatch
 
 @ExperimentalCoroutinesApi
@@ -27,7 +29,7 @@ class LobbyScreenViewModelTests {
     fun entering_lobby_always_gets_userInfo_from_repo() = runTest {
         // Arrange
         val mockRepo: UserInfoRepository = mockk {
-            every { userInfo } answers { localTestPlayer.info }
+            every { userInfo } returns localTestPlayer.info
         }
         val sut = LobbyScreenViewModel(app.lobby, mockRepo)
 
@@ -49,7 +51,6 @@ class LobbyScreenViewModelTests {
 
         // Act
         val secondTry = sut.enterLobby()
-
         sut.leaveLobby()?.join()
         val lastTry = sut.enterLobby()
 

@@ -12,7 +12,8 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import palbp.laboratory.demos.tictactoe.TicTacToeTestApplication
-import palbp.laboratory.demos.tictactoe.game.lobby.LobbyScreenTag
+import palbp.laboratory.demos.tictactoe.game.lobby.ui.LobbyScreenTag
+import palbp.laboratory.demos.tictactoe.preferences.PreferencesScreenTag
 
 @RunWith(AndroidJUnit4::class)
 class MainActivityTests {
@@ -22,8 +23,8 @@ class MainActivityTests {
 
     @Test
     fun screen_contains_start_button() {
-        testRule.onNodeWithTag("MainScreen").assertExists()
-        testRule.onNodeWithTag("PlayButton").assertExists()
+        testRule.onNodeWithTag(MainScreenTag).assertExists()
+        testRule.onNodeWithTag(PlayButtonTag).assertExists()
     }
 
     @Test
@@ -32,7 +33,7 @@ class MainActivityTests {
         // Arrange not required. Default testing repo always returns a UserInfo instance
 
         // Act
-        testRule.onNodeWithTag("PlayButton").performClick()
+        testRule.onNodeWithTag(PlayButtonTag).performClick()
         testRule.waitForIdle()
 
         // Assert
@@ -55,15 +56,14 @@ class MainActivityTests {
 
         try {
             // Act
-            testRule.onNodeWithTag("PlayButton").performClick()
+            testRule.onNodeWithTag(PlayButtonTag).performClick()
             testRule.waitForIdle()
 
             // Assert
-            testRule.onNodeWithTag("PreferencesScreen").assertExists()
+            testRule.onNodeWithTag(PreferencesScreenTag).assertExists()
         }
         finally {
             testApplication.userInfoRepo = defaultUserInfoRepo
         }
     }
-
 }

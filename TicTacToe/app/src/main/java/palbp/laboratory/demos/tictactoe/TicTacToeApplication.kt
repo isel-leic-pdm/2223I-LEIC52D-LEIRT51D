@@ -5,10 +5,10 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import palbp.laboratory.demos.tictactoe.game.lobby.Lobby
 import palbp.laboratory.demos.tictactoe.game.lobby.LobbyFirebase
-import palbp.laboratory.demos.tictactoe.preferences.UserInfoRepository
+import palbp.laboratory.demos.tictactoe.game.lobby.model.Lobby
 import palbp.laboratory.demos.tictactoe.preferences.UserInfoRepositorySharedPrefs
+import palbp.laboratory.demos.tictactoe.preferences.model.UserInfoRepository
 
 const val TAG = "TicTacToeApp"
 
@@ -44,3 +44,4 @@ class TicTacToeApplication : DependenciesContainer, Application() {
     override val lobby: Lobby
         get() = LobbyFirebase(emulatedFirestoreDb)
 }
+

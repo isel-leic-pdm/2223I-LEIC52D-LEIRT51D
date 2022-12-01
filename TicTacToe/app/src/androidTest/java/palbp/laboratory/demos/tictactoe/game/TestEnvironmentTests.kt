@@ -1,5 +1,3 @@
-@file:OptIn(ExperimentalCoroutinesApi::class)
-
 package palbp.laboratory.demos.tictactoe.game
 
 import androidx.test.platform.app.InstrumentationRegistry
@@ -13,6 +11,7 @@ import org.junit.Assert
 import org.junit.Test
 import palbp.laboratory.demos.tictactoe.TicTacToeTestApplication
 
+@OptIn(ExperimentalCoroutinesApi::class)
 class TestEnvironmentTests {
 
     private val app by lazy {

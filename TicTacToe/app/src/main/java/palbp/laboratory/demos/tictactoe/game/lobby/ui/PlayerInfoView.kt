@@ -1,4 +1,4 @@
-package palbp.laboratory.demos.tictactoe.ui
+package palbp.laboratory.demos.tictactoe.game.lobby.ui
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -13,38 +13,38 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import palbp.laboratory.demos.tictactoe.preferences.UserInfo
+import palbp.laboratory.demos.tictactoe.game.lobby.model.PlayerInfo
+import palbp.laboratory.demos.tictactoe.preferences.model.UserInfo
 import palbp.laboratory.demos.tictactoe.ui.theme.TicTacToeTheme
 
-const val UserInfoViewTag = "UserInfoView"
+const val PlayerInfoViewTag = "PlayerInfoView"
 
 @Composable
-fun UserInfoView(
-    userInfo: UserInfo,
-    onUserSelected: (UserInfo) -> Unit
+fun PlayerInfoView(
+    playerInfo: PlayerInfo,
+    onPlayerSelected: (PlayerInfo) -> Unit
 ) {
     Card(
         shape = MaterialTheme.shapes.medium,
         elevation = 4.dp,
         modifier = Modifier
             .fillMaxWidth()
-            .clickable { onUserSelected(userInfo) }
-            .testTag(UserInfoViewTag)
+            .clickable { onPlayerSelected(playerInfo) }
+            .testTag(PlayerInfoViewTag)
     ) {
         Column(
-            modifier = Modifier
-                .padding(8.dp)
+            modifier = Modifier.padding(8.dp)
         ) {
             Text(
-                text = userInfo.nick,
+                text = playerInfo.info.nick,
                 style = MaterialTheme.typography.subtitle1,
                 textAlign = TextAlign.Start,
                 maxLines = 1,
                 modifier = Modifier.fillMaxWidth()
             )
-            if (userInfo.moto != null) {
+            if (playerInfo.info.moto != null) {
                 Text(
-                    text = userInfo.moto,
+                    text = playerInfo.info.moto,
                     style = MaterialTheme.typography.subtitle2,
                     textAlign = TextAlign.Start,
                     maxLines = 1,
@@ -61,9 +61,9 @@ fun UserInfoView(
 @Composable
 private fun UserInfoViewNoMotoPreview() {
     TicTacToeTheme {
-        UserInfoView(
-            userInfo = UserInfo("My Nick"),
-            onUserSelected = { }
+        PlayerInfoView(
+            playerInfo = PlayerInfo(UserInfo("My Nick")),
+            onPlayerSelected = { }
         )
     }
 }
@@ -72,9 +72,9 @@ private fun UserInfoViewNoMotoPreview() {
 @Composable
 private fun UserInfoViewPreview() {
     TicTacToeTheme {
-        UserInfoView(
-            userInfo = UserInfo("My Nick", "This is my moto"),
-            onUserSelected = { }
+        PlayerInfoView(
+            playerInfo = PlayerInfo(UserInfo("My Nick", "This is my moto")),
+            onPlayerSelected = { }
         )
     }
 }

@@ -11,11 +11,12 @@ import io.mockk.every
 import io.mockk.mockk
 import io.mockk.slot
 import kotlinx.coroutines.flow.flow
-import palbp.laboratory.demos.tictactoe.game.lobby.Lobby
-import palbp.laboratory.demos.tictactoe.game.lobby.PlayerInfo
-import palbp.laboratory.demos.tictactoe.game.lobby.localTestPlayer
-import palbp.laboratory.demos.tictactoe.preferences.UserInfo
-import palbp.laboratory.demos.tictactoe.preferences.UserInfoRepository
+import palbp.laboratory.demos.tictactoe.game.lobby.model.Lobby
+import palbp.laboratory.demos.tictactoe.game.lobby.model.PlayerInfo
+import palbp.laboratory.demos.tictactoe.preferences.model.UserInfo
+import palbp.laboratory.demos.tictactoe.preferences.model.UserInfoRepository
+
+val localTestPlayer = PlayerInfo(UserInfo("local"))
 
 /**
  * The service locator to be used in the instrumented tests.
@@ -40,6 +41,7 @@ class TicTacToeTestApplication : DependenciesContainer, Application() {
                 )
             }
         }
+
 
     val emulatedFirestoreDb: FirebaseFirestore by lazy {
         Firebase.firestore.also {

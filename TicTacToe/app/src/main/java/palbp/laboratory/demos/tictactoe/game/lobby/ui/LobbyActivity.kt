@@ -1,9 +1,8 @@
-package palbp.laboratory.demos.tictactoe.game.lobby
+package palbp.laboratory.demos.tictactoe.game.lobby.ui
 
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -12,11 +11,15 @@ import androidx.compose.runtime.getValue
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import palbp.laboratory.demos.tictactoe.DependenciesContainer
-import palbp.laboratory.demos.tictactoe.TAG
-import palbp.laboratory.demos.tictactoe.game.play.GameActivity
-import palbp.laboratory.demos.tictactoe.preferences.PreferencesActivity
+import palbp.laboratory.demos.tictactoe.game.play.ui.GameActivity
+import palbp.laboratory.demos.tictactoe.preferences.ui.PreferencesActivity
 import palbp.laboratory.demos.tictactoe.utils.viewModelInit
 
+/**
+ * The screen used to display the list of players in the lobby, that is, available to play.
+ * This a reactive version of this screen. An alternative approach is used in
+ * [LobbyActivityReactive].
+ */
 class LobbyActivity : ComponentActivity() {
 
     private val viewModel by viewModels<LobbyScreenViewModel> {
@@ -42,22 +45,22 @@ class LobbyActivity : ComponentActivity() {
             val players by viewModel.players.collectAsState()
             LobbyScreen(
                 state = LobbyScreenState(players),
+                onPlayerSelected = {
+                    GameActivity.navigate(this)
+                },
                 onBackRequested = { finish() },
                 onPreferencesRequested = {
                     PreferencesActivity.navigate(this, finishOnSave = true)
-                },
-                onPlayerSelected = { GameActivity.navigate(this) }
+                }
             )
         }
 
         lifecycle.addObserver(object : DefaultLifecycleObserver {
             override fun onStart(owner: LifecycleOwner) {
-                Log.v(TAG, "LobbyActivity.onStart()")
                 viewModel.enterLobby()
             }
 
             override fun onStop(owner: LifecycleOwner) {
-                Log.v(TAG, "LobbyActivity.onStop()")
                 viewModel.leaveLobby()
             }
         })

@@ -293,4 +293,29 @@ Live coding session:
   * [Getting started with Firebase emulator](https://firebase.google.com/docs/emulator-suite/connect_and_prototype?database=Firestore)
   * [Connecting the app to the Firebase emulator](https://firebase.google.com/docs/emulator-suite/connect_firestore)
 
+[Lecture video (in Portuguese)](https://www.youtube.com/watch?v=p22ymi9w5zg&list=PL8XxoCaL3dBhGZmXh2_SdA-RdeVxuf8Mv&index=15)
+
+## Week 12
+### 30/11/2022 - Building the TicTacToe application: part 4
+
+Live coding session:
+  * Building the TicTacToe application from scratch, starting with the automated tests
+  * Implementing the game's lobby using Firestore, continued
+
+Lecture video (in Portuguese) _(coming soon)_
+
+### 02/12/2022 - Building the TicTacToe application: part 5 _(preview)_
+
+Live coding session:
+  * Building the TicTacToe application from scratch, starting with the automated tests
+  * Further considerations on software design driven by the need to automated testing
+  * Finishing up game's lobby using Firestore, continued
+    * Adding support for being challenged and challenging other players
+  * Starting the implementing the game screen
+    * Domain layer and tests
+    * Screen UI
+
+* Other links:
+* [The Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
+
 Lecture video (in Portuguese) _(coming soon)_

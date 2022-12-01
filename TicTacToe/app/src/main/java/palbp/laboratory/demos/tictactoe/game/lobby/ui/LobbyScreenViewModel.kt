@@ -1,4 +1,4 @@
-package palbp.laboratory.demos.tictactoe.game.lobby
+package palbp.laboratory.demos.tictactoe.game.lobby.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -6,14 +6,16 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import palbp.laboratory.demos.tictactoe.preferences.UserInfoRepository
+import palbp.laboratory.demos.tictactoe.game.lobby.model.Lobby
+import palbp.laboratory.demos.tictactoe.game.lobby.model.PlayerInfo
+import palbp.laboratory.demos.tictactoe.preferences.model.UserInfoRepository
 
 /**
  * View model for the Lobby Screen hosted by [LobbyActivity]
  */
 class LobbyScreenViewModel(
-    private val lobby: Lobby,
-    private val userInfoRepository: UserInfoRepository
+    val lobby: Lobby,
+    val userInfoRepo: UserInfoRepository
 ) : ViewModel() {
 
     private val _players = MutableStateFlow<List<PlayerInfo>>(emptyList())
@@ -23,18 +25,17 @@ class LobbyScreenViewModel(
 
     fun enterLobby(): Job? =
         if (lobbyMonitor == null) {
-            val localPlayer = PlayerInfo(checkNotNull(userInfoRepository.userInfo))
+            val localPlayer = PlayerInfo(checkNotNull(userInfoRepo.userInfo))
             lobbyMonitor = viewModelScope.launch {
-                val lobbyFlow = lobby.enterAndObserve(localPlayer)
-                lobbyFlow.collect { players ->
-                    _players.value = players.filter {
-                        it.id != localPlayer.id
+                lobby.enterAndObserve(localPlayer).collect { currentPlayers ->
+                    val otherPlayers = currentPlayers.filter {
+                        it != localPlayer
                     }
+                    _players.value = otherPlayers
                 }
             }
             lobbyMonitor
-        }
-        else null
+        } else null
 
     fun leaveLobby(): Job? = if (lobbyMonitor != null) {
         viewModelScope.launch {

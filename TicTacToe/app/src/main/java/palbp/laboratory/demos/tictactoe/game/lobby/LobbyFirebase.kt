@@ -6,7 +6,9 @@ import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.tasks.await
-import palbp.laboratory.demos.tictactoe.preferences.UserInfo
+import palbp.laboratory.demos.tictactoe.game.lobby.model.Lobby
+import palbp.laboratory.demos.tictactoe.game.lobby.model.PlayerInfo
+import palbp.laboratory.demos.tictactoe.preferences.model.UserInfo
 import java.util.*
 
 const val LOBBY = "lobby"
@@ -21,7 +23,9 @@ class InUse(val localPlayerDocRef: DocumentReference): LobbyState()
 class InUseWithFlow(val scope: ProducerScope<List<PlayerInfo>>) : LobbyState()
 object Idle : LobbyState()
 
-
+/**
+ * Implementation of the Game's lobby using Firebase's Firestore
+ */
 class LobbyFirebase(private val db: FirebaseFirestore) : Lobby {
 
     private var state: LobbyState = Idle
@@ -103,6 +107,7 @@ fun QueryDocumentSnapshot.toPlayerInfo() =
         ),
         id = UUID.fromString(id),
     )
+
 
 fun QuerySnapshot.toPlayerList() = map { it.toPlayerInfo() }
 

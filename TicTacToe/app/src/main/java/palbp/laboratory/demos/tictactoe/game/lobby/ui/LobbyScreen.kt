@@ -1,4 +1,4 @@
-package palbp.laboratory.demos.tictactoe.game.lobby
+package palbp.laboratory.demos.tictactoe.game.lobby.ui
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -14,10 +14,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import palbp.laboratory.demos.tictactoe.R
-import palbp.laboratory.demos.tictactoe.preferences.UserInfo
+import palbp.laboratory.demos.tictactoe.game.lobby.model.PlayerInfo
+import palbp.laboratory.demos.tictactoe.preferences.model.UserInfo
 import palbp.laboratory.demos.tictactoe.ui.NavigationHandlers
 import palbp.laboratory.demos.tictactoe.ui.TopBar
-import palbp.laboratory.demos.tictactoe.ui.UserInfoView
 import palbp.laboratory.demos.tictactoe.ui.theme.TicTacToeTheme
 
 const val LobbyScreenTag = "LobbyScreen"
@@ -29,7 +29,7 @@ data class LobbyScreenState(
 @Composable
 fun LobbyScreen(
     state: LobbyScreenState = LobbyScreenState(),
-    onPlayerSelected: (UserInfo) -> Unit = { },
+    onPlayerSelected: (PlayerInfo) -> Unit = { },
     onBackRequested: () -> Unit = { },
     onPreferencesRequested: () -> Unit = { }
 ) {
@@ -64,7 +64,7 @@ fun LobbyScreen(
                     modifier = Modifier.padding(innerPadding)
                 ) {
                     items(state.players) {
-                        UserInfoView(userInfo = it.info, onPlayerSelected)
+                        PlayerInfoView(playerInfo = it, onPlayerSelected)
                     }
                 }
             }
@@ -74,19 +74,16 @@ fun LobbyScreen(
 
 @Preview(showBackground = true)
 @Composable
-fun MainScreenPreview() {
-    TicTacToeTheme {
-        LobbyScreen(
-            state = LobbyScreenState(players),
-        )
-    }
+private fun LobbyScreenPreview() {
+    LobbyScreen(
+        state = LobbyScreenState(players),
+        onBackRequested = { },
+        onPreferencesRequested = { }
+    )
 }
 
 private val players = buildList {
     repeat(30) {
-        add(
-            PlayerInfo(
-            UserInfo("My Nick $it", "This is my $it moto"))
-        )
+        add(PlayerInfo(UserInfo("My Nick $it", "This is my $it moto")))
     }
 }

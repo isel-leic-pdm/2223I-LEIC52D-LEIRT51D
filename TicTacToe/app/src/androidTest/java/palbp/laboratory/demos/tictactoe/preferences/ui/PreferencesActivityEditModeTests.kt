@@ -1,19 +1,21 @@
-package palbp.laboratory.demos.tictactoe.preferences
+package palbp.laboratory.demos.tictactoe.preferences.ui
 
 import android.content.Intent
 import androidx.compose.ui.test.*
 import androidx.lifecycle.Lifecycle
 import androidx.test.core.app.ActivityScenario
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import io.mockk.every
-import io.mockk.mockk
-import io.mockk.slot
-import io.mockk.verify
+import io.mockk.*
 import org.junit.Assert.*
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import palbp.laboratory.demos.tictactoe.game.lobby.LobbyScreenTag
+import palbp.laboratory.demos.tictactoe.game.lobby.ui.LobbyScreenTag
+import palbp.laboratory.demos.tictactoe.preferences.MotoInputTag
+import palbp.laboratory.demos.tictactoe.preferences.NicknameInputTag
+import palbp.laboratory.demos.tictactoe.preferences.PreferencesScreenTag
+import palbp.laboratory.demos.tictactoe.preferences.model.UserInfo
+import palbp.laboratory.demos.tictactoe.preferences.model.UserInfoRepository
 import palbp.laboratory.demos.tictactoe.testutils.PreserveDefaultDependencies
 import palbp.laboratory.demos.tictactoe.testutils.assertIsNotReadOnly
 import palbp.laboratory.demos.tictactoe.testutils.createPreserveDefaultDependenciesComposeRule
@@ -84,6 +86,7 @@ class PreferencesActivityEditModeTests {
 
     @Test
     fun pressing_save_button_stores_info_and_navigates_to_lobby() {
+
         application.userInfoRepo = mockRepo
 
         ActivityScenario.launch(PreferencesActivity::class.java).use {
@@ -100,6 +103,7 @@ class PreferencesActivityEditModeTests {
 
     @Test
     fun when_started_with_FINISH_ON_SAVE_pressing_save_button_stores_info_and_finishes_activity() {
+
         application.userInfoRepo = mockRepo
         val intent = Intent(application, PreferencesActivity::class.java).also {
             it.putExtra(FINISH_ON_SAVE_EXTRA, true)

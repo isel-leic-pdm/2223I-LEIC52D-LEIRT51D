@@ -1,4 +1,4 @@
-package palbp.laboratory.demos.tictactoe.preferences
+package palbp.laboratory.demos.tictactoe.preferences.ui
 
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithTag
@@ -9,6 +9,9 @@ import org.junit.Assert.*
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import palbp.laboratory.demos.tictactoe.preferences.MotoInputTag
+import palbp.laboratory.demos.tictactoe.preferences.NicknameInputTag
+import palbp.laboratory.demos.tictactoe.preferences.PreferencesScreenTag
 import palbp.laboratory.demos.tictactoe.testutils.assertIsReadOnly
 import palbp.laboratory.demos.tictactoe.ui.EditButtonTag
 import palbp.laboratory.demos.tictactoe.ui.NavigateBackTag

@@ -4,15 +4,15 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.test.runTest
-import org.junit.Assert
-import org.junit.Assert.assertFalse
-import org.junit.Assert.assertTrue
+import org.junit.Assert.*
 import org.junit.Rule
 import org.junit.Test
+import palbp.laboratory.demos.tictactoe.game.lobby.model.PlayerInfo
+import palbp.laboratory.demos.tictactoe.localTestPlayer
 import palbp.laboratory.demos.tictactoe.testutils.SuspendingCountDownLatch
 import palbp.laboratory.demos.tictactoe.testutils.SuspendingGate
 
-@OptIn(ExperimentalCoroutinesApi::class)
+@ExperimentalCoroutinesApi
 class LobbyFirebaseTests {
 
     @get:Rule
@@ -95,11 +95,11 @@ class LobbyFirebaseTests {
         collectJob.join()
 
         // Assert
-        Assert.assertEquals(2, observations.size)
-        Assert.assertEquals(otherTestPlayersInLobby.size + 1, observations.first().size)
+        assertEquals(2, observations.size)
+        assertEquals(otherTestPlayersInLobby.size + 1, observations.first().size)
         assertTrue(observations.first().contains(localTestPlayer))
 
-        Assert.assertEquals(otherTestPlayersInLobby.size, observations[1].size)
+        assertEquals(otherTestPlayersInLobby.size, observations[1].size)
         assertTrue(observations.first().contains(localTestPlayer))
     }
 }

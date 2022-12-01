@@ -13,35 +13,34 @@
         android:theme="@style/Theme.TicTacToe"
         android:name=".TicTacToeApplication"
         tools:targetApi="31">
+
         <activity
             android:name=".main.MainActivity"
             android:exported="true"
-            android:label="@string/app_name"
             android:theme="@style/Theme.TicTacToe">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
         </activity>
         <activity
-            android:name=".game.lobby.LobbyActivity"
-            android:exported="false" />
-        <activity
-            android:name=".preferences.PreferencesActivity"
+            android:name=".preferences.ui.PreferencesActivity"
             android:exported="false"
-            android:noHistory="true" />
+            android:noHistory="true"
+            android:windowSoftInputMode="adjustPan">
+        </activity>
         <activity
-            android:name=".game.lobby.LobbyActivityReactive"
-            android:exported="false" />
-
+            android:name=".game.lobby.ui.LobbyActivity"
+            android:exported="false">
+        </activity>
         <activity
-            android:name=".game.play.GameActivity"
+            android:name=".game.lobby.ui.LobbyActivityReactive"
+            android:exported="false">
+        </activity>
+        <activity
+            android:name=".game.play.ui.GameActivity"
             android:exported="false">
         </activity>
     </application>
+
 </manifest>

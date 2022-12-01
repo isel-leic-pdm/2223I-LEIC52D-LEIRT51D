@@ -6,6 +6,7 @@ import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
 import org.junit.Test
 import org.junit.runner.RunWith
+import palbp.laboratory.demos.tictactoe.preferences.model.UserInfo
 
 @RunWith(AndroidJUnit4::class)
 class UserInfoRepositoryTests {

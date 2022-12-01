@@ -10,4 +10,8 @@
     <string name="preferences_screen_moto_tip">Your moto</string>
 
     <string name="lobby_screen_title">Available players</string>
+
+    <string name="game_screen_your_turn">It\'s your turn</string>
+    <string name="game_screen_opponent_turn">Opponent\'s turn</string>
+    <string name="game_screen_forfeit">Forfeit</string>
 </resources>

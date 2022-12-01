@@ -1,19 +1,8 @@
 package palbp.laboratory.demos.tictactoe.preferences
 
 import android.content.Context
-
-/**
- * Contract for user information repository implementations.
- * TODO: Discuss the adequacy of this abstraction
- */
-interface UserInfoRepository {
-
-    /**
-     * The user information, if already stored, or null otherwise. Accesses to
-     * this property CAN be made on the main thread (a.k.a. UI thread)
-     */
-    var userInfo: UserInfo?
-}
+import palbp.laboratory.demos.tictactoe.preferences.model.UserInfo
+import palbp.laboratory.demos.tictactoe.preferences.model.UserInfoRepository
 
 /**
  * A user information repository implementation supported in shared preferences
