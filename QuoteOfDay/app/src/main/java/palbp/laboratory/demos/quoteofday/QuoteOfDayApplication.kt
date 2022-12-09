@@ -20,7 +20,7 @@ interface DependenciesContainer {
     val quoteService: QuoteService
 }
 
-private val quoteAPIHome = URL("https://5553-2001-818-e22f-ee00-bde2-15ea-7f47-87a.ngrok.io")
+private val quoteAPIHome = URL("https://406d-2001-690-2008-df53-88a7-3c22-f6ca-459c.ngrok.io")
 
 class QuoteOfDayApplication : DependenciesContainer, Application() {
 

@@ -47,10 +47,11 @@ class QuotesListActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.v(TAG, "QuotesListActivity.onCreate()")
-        setContent {
-            if (viewModel.quotes == null)
-                viewModel.fetchWeekQuotes()
 
+        if (viewModel.quotes == null)
+            viewModel.fetchWeekQuotes()
+
+        setContent {
             val loadingState =
                 if (viewModel.isLoading) RefreshingState.Refreshing
                 else RefreshingState.Idle

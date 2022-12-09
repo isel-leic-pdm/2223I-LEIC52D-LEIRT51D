@@ -52,22 +52,15 @@ class QuoteActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.v(TAG, "QuoteActivity.onCreate()")
-        setContent {
-            val receivedExtra = quoteExtra
-            if (receivedExtra != null) {
-                QuoteScreen(
-                    state = QuoteScreenState(Quote(receivedExtra), RefreshingState.Idle),
-                    onNavigationRequested = NavigationHandlers(
-                        onInfoRequested = { InfoActivity.navigate(origin = this) },
-                        onBackRequested = { finish() }
-                    )
-                )
-            }
-            else {
-                if (viewModel.quote == null)
-                    viewModel.fetchQuote()
+        val receivedExtra = quoteExtra
+        if (receivedExtra != null) {
+            displayReceivedQuote(receivedExtra)
+        }
+        else {
+            if (viewModel.quote == null)
+                viewModel.fetchQuote()
 
+            setContent {
                 val loadingState: RefreshingState =
                     if (viewModel.isLoading) RefreshingState.Refreshing
                     else RefreshingState.Idle
@@ -84,6 +77,18 @@ class QuoteActivity : ComponentActivity() {
                 if (viewModel.quote?.isFailure == true)
                     ErrorMessage()
             }
+        }
+    }
+
+    private fun displayReceivedQuote(receivedExtra: LocalQuoteDto) {
+        setContent {
+            QuoteScreen(
+                state = QuoteScreenState(Quote(receivedExtra), RefreshingState.Idle),
+                onNavigationRequested = NavigationHandlers(
+                    onInfoRequested = { InfoActivity.navigate(origin = this) },
+                    onBackRequested = { finish() }
+                )
+            )
         }
     }
 
