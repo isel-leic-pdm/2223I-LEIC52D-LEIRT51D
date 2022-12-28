@@ -19,7 +19,7 @@ val Typography = Typography(
         fontFamily = TicTacToe,
         fontWeight = FontWeight.Bold,
         letterSpacing = 2.sp,
-        fontSize = 42.sp
+        fontSize = 40.sp
     ),
 
     h4 = TextStyle(

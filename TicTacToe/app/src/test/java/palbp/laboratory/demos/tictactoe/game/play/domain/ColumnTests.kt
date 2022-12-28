@@ -1,4 +1,4 @@
-package palbp.laboratory.demos.tictactoe.game.play.model
+package palbp.laboratory.demos.tictactoe.game.play.domain
 
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue

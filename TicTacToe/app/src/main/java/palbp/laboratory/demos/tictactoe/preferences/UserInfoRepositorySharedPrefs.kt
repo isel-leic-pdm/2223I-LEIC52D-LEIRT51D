@@ -1,8 +1,8 @@
 package palbp.laboratory.demos.tictactoe.preferences
 
 import android.content.Context
-import palbp.laboratory.demos.tictactoe.preferences.model.UserInfo
-import palbp.laboratory.demos.tictactoe.preferences.model.UserInfoRepository
+import palbp.laboratory.demos.tictactoe.preferences.domain.UserInfo
+import palbp.laboratory.demos.tictactoe.preferences.domain.UserInfoRepository
 
 /**
  * A user information repository implementation supported in shared preferences

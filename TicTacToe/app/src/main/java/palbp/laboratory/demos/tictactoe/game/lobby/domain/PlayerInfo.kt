@@ -1,6 +1,6 @@
-package palbp.laboratory.demos.tictactoe.game.lobby.model
+package palbp.laboratory.demos.tictactoe.game.lobby.domain
 
-import palbp.laboratory.demos.tictactoe.preferences.model.UserInfo
+import palbp.laboratory.demos.tictactoe.preferences.domain.UserInfo
 import java.util.*
 
 /**

@@ -14,8 +14,8 @@ import palbp.laboratory.demos.tictactoe.game.lobby.ui.LobbyScreenTag
 import palbp.laboratory.demos.tictactoe.preferences.MotoInputTag
 import palbp.laboratory.demos.tictactoe.preferences.NicknameInputTag
 import palbp.laboratory.demos.tictactoe.preferences.PreferencesScreenTag
-import palbp.laboratory.demos.tictactoe.preferences.model.UserInfo
-import palbp.laboratory.demos.tictactoe.preferences.model.UserInfoRepository
+import palbp.laboratory.demos.tictactoe.preferences.domain.UserInfo
+import palbp.laboratory.demos.tictactoe.preferences.domain.UserInfoRepository
 import palbp.laboratory.demos.tictactoe.testutils.PreserveDefaultDependencies
 import palbp.laboratory.demos.tictactoe.testutils.assertIsNotReadOnly
 import palbp.laboratory.demos.tictactoe.testutils.createPreserveDefaultDependenciesComposeRule

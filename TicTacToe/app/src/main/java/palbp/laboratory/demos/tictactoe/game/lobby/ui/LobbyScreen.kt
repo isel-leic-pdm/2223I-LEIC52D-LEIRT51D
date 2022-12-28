@@ -14,8 +14,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import palbp.laboratory.demos.tictactoe.R
-import palbp.laboratory.demos.tictactoe.game.lobby.model.PlayerInfo
-import palbp.laboratory.demos.tictactoe.preferences.model.UserInfo
+import palbp.laboratory.demos.tictactoe.game.lobby.domain.PlayerInfo
+import palbp.laboratory.demos.tictactoe.preferences.domain.UserInfo
 import palbp.laboratory.demos.tictactoe.ui.NavigationHandlers
 import palbp.laboratory.demos.tictactoe.ui.TopBar
 import palbp.laboratory.demos.tictactoe.ui.theme.TicTacToeTheme

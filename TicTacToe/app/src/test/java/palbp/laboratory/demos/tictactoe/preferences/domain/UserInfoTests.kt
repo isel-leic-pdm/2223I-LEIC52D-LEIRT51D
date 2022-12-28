@@ -1,4 +1,4 @@
-package palbp.laboratory.demos.tictactoe.preferences.model
+package palbp.laboratory.demos.tictactoe.preferences.domain
 
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue

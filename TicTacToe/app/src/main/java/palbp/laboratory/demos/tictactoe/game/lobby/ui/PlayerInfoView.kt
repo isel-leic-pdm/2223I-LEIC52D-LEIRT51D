@@ -13,8 +13,8 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import palbp.laboratory.demos.tictactoe.game.lobby.model.PlayerInfo
-import palbp.laboratory.demos.tictactoe.preferences.model.UserInfo
+import palbp.laboratory.demos.tictactoe.game.lobby.domain.PlayerInfo
+import palbp.laboratory.demos.tictactoe.preferences.domain.UserInfo
 import palbp.laboratory.demos.tictactoe.ui.theme.TicTacToeTheme
 
 const val PlayerInfoViewTag = "PlayerInfoView"

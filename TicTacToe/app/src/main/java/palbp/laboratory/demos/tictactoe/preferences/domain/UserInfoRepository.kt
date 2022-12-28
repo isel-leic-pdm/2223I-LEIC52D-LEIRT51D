@@ -1,4 +1,4 @@
-package palbp.laboratory.demos.tictactoe.preferences.model
+package palbp.laboratory.demos.tictactoe.preferences.domain
 
 /**
  * Contract for user information repository implementations.

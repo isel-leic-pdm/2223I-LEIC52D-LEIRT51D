@@ -1,4 +1,4 @@
-package palbp.laboratory.demos.tictactoe.game.lobby
+package palbp.laboratory.demos.tictactoe.game.play
 
 import androidx.test.platform.app.InstrumentationRegistry
 import kotlinx.coroutines.runBlocking
@@ -7,13 +7,14 @@ import org.junit.rules.TestRule
 import org.junit.runner.Description
 import org.junit.runners.model.Statement
 import palbp.laboratory.demos.tictactoe.TicTacToeTestApplication
-import palbp.laboratory.demos.tictactoe.game.lobby.adapters.LOBBY
-import palbp.laboratory.demos.tictactoe.game.lobby.adapters.LobbyFirebase
-import palbp.laboratory.demos.tictactoe.game.lobby.adapters.toDocumentContent
-import palbp.laboratory.demos.tictactoe.game.lobby.domain.Lobby
+import palbp.laboratory.demos.tictactoe.game.lobby.domain.Challenge
+import palbp.laboratory.demos.tictactoe.game.play.adapters.MatchFirebase
+import palbp.laboratory.demos.tictactoe.game.play.adapters.ONGOING
+import palbp.laboratory.demos.tictactoe.game.play.domain.Match
+import palbp.laboratory.demos.tictactoe.localTestPlayer
 import palbp.laboratory.demos.tictactoe.otherTestPlayersInLobby
 
-class PopulatedFirebaseLobby : TestRule {
+class CleanupMatchesRule : TestRule {
 
     val app: TicTacToeTestApplication by lazy {
         InstrumentationRegistry
@@ -22,42 +23,41 @@ class PopulatedFirebaseLobby : TestRule {
             .applicationContext as TicTacToeTestApplication
     }
 
-    val lobby: Lobby = LobbyFirebase(app.emulatedFirestoreDb)
+    val remoteInitiatedChallenge = Challenge(
+        challenger = otherTestPlayersInLobby.first(),
+        challenged = localTestPlayer
+    )
 
-    private suspend fun populateLobby() {
-        otherTestPlayersInLobby.forEach {
-            app.emulatedFirestoreDb
-                .collection(LOBBY)
-                .document(it.id.toString())
-                .set(it.info.toDocumentContent())
-                .await()
-        }
-    }
+    val locallyInitiatedChallenge = Challenge(
+        challenger = localTestPlayer,
+        challenged = otherTestPlayersInLobby.first(),
+    )
 
-    private suspend fun emptyLobby() {
+    val match: Match = MatchFirebase(app.emulatedFirestoreDb)
+
+    private suspend fun cleanup() {
         app.emulatedFirestoreDb
-            .collection(LOBBY)
+            .collection(ONGOING)
             .get()
             .await()
+            .map { it.id }
             .forEach {
                 app.emulatedFirestoreDb
-                    .collection(LOBBY)
-                    .document(it.id)
+                    .collection(ONGOING)
+                    .document(it)
                     .delete()
                     .await()
             }
     }
 
-
     override fun apply(test: Statement, description: Description): Statement =
         object : Statement() {
             override fun evaluate() = runBlocking {
                 try {
-                    populateLobby()
                     test.evaluate()
                 }
                 finally {
-                    emptyLobby()
+                    cleanup()
                 }
             }
         }

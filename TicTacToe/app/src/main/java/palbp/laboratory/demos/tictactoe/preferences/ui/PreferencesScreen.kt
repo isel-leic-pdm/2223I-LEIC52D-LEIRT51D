@@ -14,8 +14,8 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import palbp.laboratory.demos.tictactoe.R
-import palbp.laboratory.demos.tictactoe.preferences.model.UserInfo
-import palbp.laboratory.demos.tictactoe.preferences.model.userInfoOrNull
+import palbp.laboratory.demos.tictactoe.preferences.domain.UserInfo
+import palbp.laboratory.demos.tictactoe.preferences.domain.userInfoOrNull
 import palbp.laboratory.demos.tictactoe.ui.*
 import palbp.laboratory.demos.tictactoe.ui.theme.TicTacToeTheme
 import kotlin.math.min

@@ -8,19 +8,19 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import palbp.laboratory.demos.tictactoe.game.play.model.BOARD_SIDE
-import palbp.laboratory.demos.tictactoe.game.play.model.Board
-import palbp.laboratory.demos.tictactoe.game.play.model.Coordinate
-import palbp.laboratory.demos.tictactoe.game.play.model.Marker
+import palbp.laboratory.demos.tictactoe.game.play.domain.BOARD_SIDE
+import palbp.laboratory.demos.tictactoe.game.play.domain.Board
+import palbp.laboratory.demos.tictactoe.game.play.domain.Coordinate
+import palbp.laboratory.demos.tictactoe.game.play.domain.Marker
 import palbp.laboratory.demos.tictactoe.ui.theme.TicTacToeTheme
 
 @Composable
 fun BoardView(
     board: Board,
     onTileSelected: (at: Coordinate) -> Unit,
+    enabled: Boolean,
     modifier: Modifier = Modifier
 ) {
-
     Column(modifier = modifier) {
         repeat(BOARD_SIDE) { row ->
             Row(
@@ -32,6 +32,7 @@ fun BoardView(
                     val at = Coordinate(row, column)
                     TileView(
                         move = board[at],
+                        enabled = enabled,
                         modifier = Modifier.weight(weight = 1.0f, fill = true),
                         onSelected = { onTileSelected(at) },
                     )
@@ -66,7 +67,7 @@ private fun VerticalSeparator() {
 @Composable
 private fun EmptyBoardViewPreview() {
     TicTacToeTheme {
-        BoardView(board = Board(), onTileSelected = { })
+        BoardView(board = Board(), enabled = true, onTileSelected = { })
     }
 }
 
@@ -74,7 +75,7 @@ private fun EmptyBoardViewPreview() {
 @Composable
 private fun NonEmptyBoardViewPreview() {
     TicTacToeTheme {
-        BoardView(board = aBoard, onTileSelected = { })
+        BoardView(board = aBoard, enabled = true, onTileSelected = { })
     }
 }
 

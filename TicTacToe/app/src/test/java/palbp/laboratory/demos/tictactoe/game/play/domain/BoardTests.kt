@@ -1,4 +1,4 @@
-package palbp.laboratory.demos.tictactoe.game.play.model
+package palbp.laboratory.demos.tictactoe.game.play.domain
 
 import org.junit.Assert.*
 import org.junit.Test
@@ -118,5 +118,49 @@ class BoardTests {
         )
 
         assertTrue(sut.isTied())
+    }
+
+    @Test
+    fun `getResult returns HasWinner with winner marker when there is one winner`() {
+        val sut = Board(
+            turn = Marker.CIRCLE,
+            tiles = listOf(
+                listOf(Marker.CROSS, null, Marker.CIRCLE),
+                listOf(null, Marker.CROSS, Marker.CIRCLE),
+                listOf(Marker.CIRCLE, null, Marker.CROSS)
+            )
+        )
+
+        val result = sut.getResult()
+        assertTrue(result is HasWinner)
+        assertTrue((result as HasWinner).winner == Marker.CROSS)
+    }
+
+    @Test
+    fun `getResult returns Tied when the board is tied`() {
+        val sut = Board(
+            turn = Marker.CROSS,
+            tiles = listOf(
+                listOf(Marker.CIRCLE, Marker.CROSS, Marker.CIRCLE),
+                listOf(Marker.CIRCLE, Marker.CROSS, Marker.CROSS),
+                listOf(Marker.CROSS, Marker.CIRCLE, Marker.CIRCLE)
+            )
+        )
+
+        assertTrue(sut.getResult() is Tied)
+    }
+
+    @Test
+    fun `getResult returns NotFinished when there is no winner and the board is not yet complete`() {
+        val sut = Board(
+            turn = Marker.CIRCLE,
+            tiles = listOf(
+                listOf(null, null, Marker.CIRCLE),
+                listOf(null, Marker.CROSS, null),
+                listOf(null, null, null)
+            )
+        )
+
+        assertTrue(sut.getResult() is OnGoing)
     }
 }

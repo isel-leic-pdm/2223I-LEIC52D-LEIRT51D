@@ -7,6 +7,7 @@ import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
 import androidx.lifecycle.Lifecycle
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import org.junit.Assert.fail
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -53,7 +54,7 @@ class LobbyActivityTests {
     }
 
     @Test
-    fun pressing_a_player_card_navigates_to_game_screen() {
+    fun pressing_a_player_card_displays_game_activity() {
         // Act
         testRule.onAllNodesWithTag(PlayerInfoViewTag).onFirst().performClick()
         testRule.waitForIdle()

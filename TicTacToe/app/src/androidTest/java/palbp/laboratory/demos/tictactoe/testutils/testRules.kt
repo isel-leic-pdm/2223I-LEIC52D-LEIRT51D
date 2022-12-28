@@ -43,9 +43,13 @@ class PreserveDefaultDependencies : TestRule {
         object : Statement() {
             override fun evaluate() {
                 val defaultUserInfoRepo = testApplication.userInfoRepo
+                val defaultLobby = testApplication.lobby
+                val defaultMatch = testApplication.match
                 try { test.evaluate() }
                 finally {
                     testApplication.userInfoRepo = defaultUserInfoRepo
+                    testApplication.lobby = defaultLobby
+                    testApplication.match = defaultMatch
                 }
             }
         }

@@ -4,15 +4,17 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import io.mockk.*
 import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.*
 import org.junit.Test
 import org.junit.runner.RunWith
 import palbp.laboratory.demos.tictactoe.DependenciesContainer
-import palbp.laboratory.demos.tictactoe.game.lobby.model.PlayerInfo
+import palbp.laboratory.demos.tictactoe.game.lobby.domain.*
 import palbp.laboratory.demos.tictactoe.localTestPlayer
-import palbp.laboratory.demos.tictactoe.preferences.model.UserInfoRepository
-import palbp.laboratory.demos.tictactoe.testutils.SuspendingCountDownLatch
+import palbp.laboratory.demos.tictactoe.otherTestPlayersInLobby
+import palbp.laboratory.demos.tictactoe.preferences.domain.UserInfoRepository
+import palbp.laboratory.demos.tictactoe.testutils.SuspendingGate
 
 @ExperimentalCoroutinesApi
 @RunWith(AndroidJUnit4::class)
@@ -66,25 +68,86 @@ class LobbyScreenViewModelTests {
         val sut = LobbyScreenViewModel(app.lobby, app.userInfoRepo)
 
         // Act
-        val latch = SuspendingCountDownLatch(2)
-        // There are exactly TWO calls to the collector's block:
-        // - the first bearing an empty list, which is the initial content of the StateFlow
-        // - the second with the only list produced by the mock
-        // Regardless, we will check if the local player ever appeared
+        val gate = SuspendingGate()
         val collectJob = launch {
             sut.enterLobby()
-            sut.players.collect {
-                latch.countDown()
-                allObservedPlayers.addAll(it)
+            sut.players.collect { players ->
+                if (players.isNotEmpty()) {
+                    gate.open()
+                    allObservedPlayers.addAll(players)
+                }
             }
         }
 
         // Lets wait for the first (and only) collect
-        latch.await()
+        gate.await()
         collectJob.cancel()
 
         // Assert
         assertFalse(allObservedPlayers.any { it.info == localTestPlayer.info })
         assertFalse(allObservedPlayers.isEmpty())
+    }
+
+    @Test
+    fun received_challenge_produces_IncomingChallenge_event(): Unit = runTest {
+        // Arrange
+        val mockLobby: Lobby = mockk {
+            val localPlayer = slot<PlayerInfo>()
+            every { enterAndObserve(capture(localPlayer)) } returns flow {
+                val challenge = Challenge(
+                    challenger = otherTestPlayersInLobby.first(),
+                    challenged = localPlayer.captured
+                )
+                emit(ChallengeReceived(challenge))
+            }
+        }
+        val sut = LobbyScreenViewModel(mockLobby, app.userInfoRepo)
+
+        val gate = SuspendingGate()
+        var receivedChallenge: Challenge? = null
+        val pendingMatchJob = launch {
+            sut.enterLobby()
+            sut.pendingMatch.collect { evt ->
+                if (evt is IncomingChallenge) {
+                    gate.open()
+                    receivedChallenge = evt.challenge
+                }
+            }
+        }
+
+        gate.await()
+        pendingMatchJob.cancel()
+
+        // Assert
+        assertNotNull(receivedChallenge)
+        assertEquals(localTestPlayer.info, receivedChallenge?.challenged?.info)
+        assertEquals(otherTestPlayersInLobby.first(), receivedChallenge?.challenger)
+    }
+
+    @Test
+    fun sent_challenge_produces_SentChallenge_event(): Unit = runTest {
+        // Arrange
+        val sut = LobbyScreenViewModel(app.lobby, app.userInfoRepo)
+
+        val gate = SuspendingGate()
+        var challengeSent: Challenge? = null
+        val pendingMatchJob = launch {
+            sut.enterLobby()
+            sut.sendChallenge(otherTestPlayersInLobby.first())?.join()
+            sut.pendingMatch.collect { evt ->
+                if (evt is SentChallenge) {
+                    gate.open()
+                    challengeSent = evt.challenge
+                }
+            }
+        }
+
+        gate.await()
+        pendingMatchJob.cancel()
+
+        // Assert
+        assertNotNull(challengeSent)
+        assertEquals(localTestPlayer.info, challengeSent?.challenger?.info)
+        assertEquals(otherTestPlayersInLobby.first(), challengeSent?.challenged)
     }
 }

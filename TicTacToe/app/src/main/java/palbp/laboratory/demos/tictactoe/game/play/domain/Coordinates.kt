@@ -1,4 +1,4 @@
-package palbp.laboratory.demos.tictactoe.game.play.model
+package palbp.laboratory.demos.tictactoe.game.play.domain
 
 /**
  * The Tic-Tac-Toe's board side

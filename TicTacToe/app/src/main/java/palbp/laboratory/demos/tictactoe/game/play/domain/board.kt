@@ -1,4 +1,4 @@
-package palbp.laboratory.demos.tictactoe.game.play.model
+package palbp.laboratory.demos.tictactoe.game.play.domain
 
 /**
  * Represents a Tic-Tac-Toe board. Instances are immutable.
@@ -13,6 +13,18 @@ data class Board(
             init = { List(size = BOARD_SIDE, init = { null }) }
         )
 ) {
+
+    companion object {
+        fun fromMovesList(turn: Marker, moves: List<Marker?>) = Board(
+            turn = turn,
+            tiles = List(size = BOARD_SIDE, init = { row ->
+                List(size = BOARD_SIDE, init = { col ->
+                    moves[row * BOARD_SIDE + col]
+                })
+            })
+        )
+    }
+
     /**
      * Overloads the indexing operator
      */
@@ -67,9 +79,25 @@ fun Board.isTied(): Boolean =
  */
 fun Board.hasWon(marker: Marker): Boolean =
     tiles.any { row -> row.all { it == marker } } ||
-    (0 until BOARD_SIDE).any { column ->
-        (0 until BOARD_SIDE).all { row -> tiles[row][column] == marker }
-    } ||
-    tiles[0][0] == marker && tiles[1][1] == marker && tiles[2][2] == marker ||
-    tiles[0][2] == marker && tiles[1][1] == marker && tiles[2][0] == marker
+            (0 until BOARD_SIDE).any { column ->
+                (0 until BOARD_SIDE).all { row -> tiles[row][column] == marker }
+            } ||
+            tiles[0][0] == marker && tiles[1][1] == marker && tiles[2][2] == marker ||
+            tiles[0][2] == marker && tiles[1][1] == marker && tiles[2][0] == marker
 
+
+open class BoardResult
+class HasWinner(val winner: Marker) : BoardResult()
+class Tied : BoardResult()
+class OnGoing : BoardResult()
+
+/**
+ * Gets the current result of this board.
+ */
+fun Board.getResult(): BoardResult =
+    when {
+        hasWon(Marker.CIRCLE) -> HasWinner(Marker.CIRCLE)
+        hasWon(Marker.CROSS) -> HasWinner(Marker.CROSS)
+        toMovesList().all { it != null } -> Tied()
+        else -> OnGoing()
+    }

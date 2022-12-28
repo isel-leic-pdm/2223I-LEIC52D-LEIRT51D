@@ -5,10 +5,12 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import palbp.laboratory.demos.tictactoe.game.lobby.LobbyFirebase
-import palbp.laboratory.demos.tictactoe.game.lobby.model.Lobby
+import palbp.laboratory.demos.tictactoe.game.lobby.adapters.LobbyFirebase
+import palbp.laboratory.demos.tictactoe.game.lobby.domain.Lobby
+import palbp.laboratory.demos.tictactoe.game.play.adapters.MatchFirebase
+import palbp.laboratory.demos.tictactoe.game.play.domain.Match
 import palbp.laboratory.demos.tictactoe.preferences.UserInfoRepositorySharedPrefs
-import palbp.laboratory.demos.tictactoe.preferences.model.UserInfoRepository
+import palbp.laboratory.demos.tictactoe.preferences.domain.UserInfoRepository
 
 const val TAG = "TicTacToeApp"
 
@@ -18,6 +20,7 @@ const val TAG = "TicTacToeApp"
 interface DependenciesContainer {
     val userInfoRepo: UserInfoRepository
     val lobby: Lobby
+    val match: Match
 }
 
 /**
@@ -42,6 +45,9 @@ class TicTacToeApplication : DependenciesContainer, Application() {
         get() = UserInfoRepositorySharedPrefs(this)
 
     override val lobby: Lobby
-        get() = LobbyFirebase(emulatedFirestoreDb)
+        get() = LobbyFirebase(realFirestoreDb)
+
+    override val match: Match
+        get() = MatchFirebase(realFirestoreDb)
 }
 

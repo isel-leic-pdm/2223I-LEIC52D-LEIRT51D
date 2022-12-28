@@ -1,4 +1,4 @@
-package palbp.laboratory.demos.tictactoe.game.play.model
+package palbp.laboratory.demos.tictactoe.game.play.domain
 
 /**
  * Enumeration type used to represent the game's moves.

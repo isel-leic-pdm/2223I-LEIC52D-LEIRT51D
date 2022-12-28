@@ -24,8 +24,9 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun startGame() {
-        if (repo.userInfo != null)
+        if (repo.userInfo != null) {
             LobbyActivity.navigate(this)
+        }
         else
             PreferencesActivity.navigate(this)
     }

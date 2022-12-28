@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Jogo do Galo</string>
+    <string name="start_game_button_text">Jogar</string>
+
+    <string name="top_bar_go_back">Voltar atrás</string>
+    <string name="top_bar_navigate_to_prefs">Mostrar preferências</string>
+
+    <string name="preferences_screen_title">Como és visto</string>
+    <string name="preferences_screen_nickname_tip">O teu nome</string>
+    <string name="preferences_screen_moto_tip">O teu mote</string>
+
+    <string name="lobby_screen_title" translatable="false">Jogadores disponíveis</string>
+
+    <string name="starting_match_dialog_title">Jogo a começar</string>
+    <string name="starting_match_dialog_text">À espera do adversário</string>
+    <string name="starting_match_cancel_button">Cancelar</string>
+
+    <string name="match_ended_dialog_title">Jogo terminado</string>
+    <string name="match_ended_dialog_text_local_won">Parabéns, ganhaste!</string>
+    <string name="match_ended_dialog_text_opponent_won">O oponente venceu.</string>
+    <string name="match_ended_dialog_text_tied_match">Jogo empatado</string>
+    <string name="match_ended_ok_button">OK</string>
+
+    <string name="game_screen_waiting">Entrando no jogo</string>
+    <string name="game_screen_your_turn">É a tua vez</string>
+    <string name="game_screen_opponent_turn">É a vez do oponente</string>
+    <string name="game_screen_forfeit">Abandonar</string>
+</resources>

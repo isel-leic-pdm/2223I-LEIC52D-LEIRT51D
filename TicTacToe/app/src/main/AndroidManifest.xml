@@ -34,10 +34,6 @@
             android:exported="false">
         </activity>
         <activity
-            android:name=".game.lobby.ui.LobbyActivityReactive"
-            android:exported="false">
-        </activity>
-        <activity
             android:name=".game.play.ui.GameActivity"
             android:exported="false">
         </activity>
