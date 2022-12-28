@@ -255,7 +255,6 @@ Other links:
 * [Testing Kotlin flows on Android](https://developer.android.com/kotlin/flow/test)
 * [Recomendations for Android architecture](https://developer.android.com/topic/architecture/recommendations)
 
-
 ## Week 11
 ### 23/11/2022 - Android application design: Interaction models, continued
 
@@ -270,12 +269,10 @@ Other links:
 
 [Lecture video (in Portuguese)](https://www.youtube.com/watch?v=0GMqt_gcS3A&list=PL8XxoCaL3dBhGZmXh2_SdA-RdeVxuf8Mv&index=14)
 
-## 25/11/2022 - Building the TicTacToe application: part 3
-
-Live coding session:
+### 25/11/2022 - Building the TicTacToe application: part 3
+* Live coding session:
   * Building the TicTacToe application from scratch, starting with the automated tests
   * Considerations on software design driven by the need to automated testing
-
 * Persistency using Firebase's Firestore:
   * Overview of the provided data model (i.e. Document DB)
     * [Documents, collections and references](https://firebase.google.com/docs/firestore/data-model)
@@ -288,7 +285,7 @@ Live coding session:
 * Materialization of the discussed subjects on the TicTacToe application:
   * Implementing the game's lobby using firestore
 
-* Other links:
+Other links:
   * [Adding Firebase to an Android project](https://firebase.google.com/docs/android/setup?hl=en&authuser=0)
   * [Getting started with Firebase emulator](https://firebase.google.com/docs/emulator-suite/connect_and_prototype?database=Firestore)
   * [Connecting the app to the Firebase emulator](https://firebase.google.com/docs/emulator-suite/connect_firestore)
@@ -302,20 +299,42 @@ Live coding session:
   * Building the TicTacToe application from scratch, starting with the automated tests
   * Implementing the game's lobby using Firestore, continued
 
-Lecture video (in Portuguese) _(coming soon)_
+[Lecture video (in Portuguese)](https://www.youtube.com/watch?v=l99tamVUZpM&list=PL8XxoCaL3dBhGZmXh2_SdA-RdeVxuf8Mv&index=16)
 
-### 02/12/2022 - Building the TicTacToe application: part 5 _(preview)_
+### 02/12/2022 - Building the TicTacToe application: part 5
 
 Live coding session:
   * Building the TicTacToe application from scratch, starting with the automated tests
   * Further considerations on software design driven by the need to automated testing
   * Finishing up game's lobby using Firestore, continued
     * Adding support for being challenged and challenging other players
-  * Starting the implementing the game screen
+  * Starting the implementation of the game screen
     * Domain layer and tests
     * Screen UI
 
-* Other links:
-* [The Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
+Other links:
+  * [The Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
 
-Lecture video (in Portuguese) _(coming soon)_
+[Lecture video (in Portuguese)](https://www.youtube.com/watch?v=_HdjygnQE_4&list=PL8XxoCaL3dBhGZmXh2_SdA-RdeVxuf8Mv&index=17)
+
+## Week 13
+### 05/12/2022 - Building the TicTacToe application: finishing up
+
+Live coding session:
+  * Building the TicTacToe application from scratch, starting with the automated tests
+  * Finishing up the implementation of the game screen
+
+Lecture video not available (see LI51D video lectures)
+
+### 09/12/2022 - Building the TicTacToe application: finishing up
+
+* Practical class dedicated to the development of the course's project
+
+## Week 14
+### 12/12/2022
+
+* Practical class dedicated to the development of the course's project
+
+### 16/12/2022
+
+* Practical class dedicated to the development of the course's project
